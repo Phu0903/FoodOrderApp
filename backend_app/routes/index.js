@@ -1,25 +1,19 @@
 var express = require('express');
 var router = express.Router();
 var ProductFood = require('../model/ProductFood')
+var User = require('../model/User')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
-//Lấy dữ liệu đồ ăn
-// router.get('/getFood', function (req, res, next) {
-//   ProductFood.find({}, function (err, dulieu) {
-//     console.log(dulieu);
-//     //res.json(dulieu);
-//     res.render('ViewProduct', { title: 'xem dữ liệu', products: dulieu })
-//   })
-// });
+
 //Xuất danh sách sản phẩm 
 router.get('/getFood', async (req, res) => {
  try {
   ProductFood.find({}, function (err, dulieu) {
-    //res.json(dulieu);
-    res.render('ViewProduct', { title: 'xem dữ liệu', products: dulieu })
+    res.json(dulieu);
+    //res.render('ViewProduct', { title: 'xem dữ liệu', products: dulieu })
   })
  } catch (error) {
   res.status(500).json({
@@ -27,6 +21,23 @@ router.get('/getFood', async (req, res) => {
     message: err.message
 });
  }
+})
+
+
+
+//Xem sản phẩm theo catogy
+router.get('/getFoodbyCatogy',async (req,res)=>{
+  try{
+    ProductFood.find({'_Category':'Pizza'},function(err,data)
+    {
+      res.render('ViewProduct',{title:'Xem dữ liệu', products:data})
+    })
+  }catch (error) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+  });
+}
 })
 
 
@@ -54,6 +65,20 @@ router.post('/AddProduct', function (req, res, next) {
     dulieu.save();
 
     res.redirect('/AddProduct');
+  }
+});
+
+router.post('/Adduser', function (req, res, next) {
+  var phantu = {
+    '_email': req.body.email,
+    '_password': req.body.password,
+  }
+  if (phantu === null) {
+    res.json('nhập email và password')
+  }
+  else {
+    var dulieu = new User(phantu);
+    dulieu.save();  
   }
 });
 
