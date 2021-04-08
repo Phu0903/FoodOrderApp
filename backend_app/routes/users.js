@@ -46,7 +46,7 @@ router.post('/dangky', async (req, res, next) => {
         else {
           var dulieu = new User(innsertUser);
           dulieu.save();
-          res.send('Register success');
+          res.status(200).json('Register success');
         }
 
 
@@ -73,10 +73,10 @@ router.post('/dangnhap', async (req, res, next) => {
         User.findOne({ '_email': email }, function (error, data) {
 
           if (!bcryptjs.compareSync(req.body.password, data._password)) {
-            res.json('Wrong password or email');
+            res.status(400).json('Wrong password or email');
           }
           else {
-            res.json('Login success');
+            res.status(200).json('Login success');
           }
         })
       }
@@ -96,7 +96,7 @@ router.get('/inforUser/:email', async (req, res) => {
   try {
     var email = req.params.email;
     User.find({ '_email': email }, function (err, dulieu) {
-      res.json(dulieu);
+      res.status(200).json(dulieu);
     })
   } catch (err) {
     res.status(500).json({

@@ -12,7 +12,7 @@ router.get('/', function (req, res, next) {
 router.get('/getFood', async (req, res) => {
  try {
   ProductFood.find({}, function (err, dulieu) {
-    res.json(dulieu);
+    res.status(201).json(dulieu);
     //res.render('ViewProduct', { title: 'xem dữ liệu', products: dulieu })
   })
  } catch (error) {
@@ -22,9 +22,6 @@ router.get('/getFood', async (req, res) => {
 });
  }
 })
-
-
-
 //Xem sản phẩm theo catogy
 router.get('/getFoodbyCatogy',async (req,res)=>{
   try{
@@ -39,8 +36,7 @@ router.get('/getFoodbyCatogy',async (req,res)=>{
   });
 }
 })
-
-
+//Thêm sản phẩm
 router.get('/AddProduct', function (req, res, next) {
   res.render('AddProduct', {})
 });
@@ -67,24 +63,4 @@ router.post('/AddProduct', function (req, res, next) {
     res.redirect('/AddProduct');
   }
 });
-
-router.post('/Adduser', function (req, res, next) {
-  var phantu = {
-    '_email': req.body.email,
-    '_password': req.body.password,
-  }
-  if (phantu === null) {
-    res.json('nhập email và password')
-  }
-  else {
-    var dulieu = new User(phantu);
-    dulieu.save();  
-  }
-});
-
-
-
-
-
-
 module.exports = router;
