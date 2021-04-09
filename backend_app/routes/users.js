@@ -1,12 +1,12 @@
 var express = require('express');
-var router = express.Router();
+var userRouter = express.Router();
 var bcryptjs = require('bcryptjs');
 var User = require('../model/User');
 const { response } = require('../app');
 
 
 /*đăng kí*/
-router.post('/dangky', async (req, res, next) => {
+userRouter.post('/dangky', async (req, res, next) => {
   try {
     var post_data = req.body;
     var name = post_data.name;
@@ -48,8 +48,6 @@ router.post('/dangky', async (req, res, next) => {
           dulieu.save();
           res.status(200).json('Register success');
         }
-
-
       })
     }
   } catch (err) {
@@ -61,7 +59,7 @@ router.post('/dangky', async (req, res, next) => {
 });
 
 //đăng nhập
-router.post('/dangnhap', async (req, res, next) => {
+userRouter.post('/dangnhap', async (req, res, next) => {
   try {
     var post_data = req.body;
     var email = post_data.email;
@@ -92,7 +90,7 @@ router.post('/dangnhap', async (req, res, next) => {
 
 //getInforUser
 
-router.get('/inforUser/:email', async (req, res) => {
+userRouter.get('/inforUser/:email', async (req, res) => {
   try {
     var email = req.params.email;
     User.find({ '_email': email }, function (err, dulieu) {
@@ -105,4 +103,4 @@ router.get('/inforUser/:email', async (req, res) => {
     });
   }
 })
-module.exports = router;
+module.exports = userRouter;
