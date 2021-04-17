@@ -4,7 +4,7 @@ var cart = require('../model/Cart');
 var User = require('../model/User');
 var ProductFood = require('../model/ProductFood');
 const { json } = require('express');
-const Cart = require('../model/Cart');
+
 
 
 //Hàm thêm vào giỏ hàng
@@ -12,7 +12,6 @@ cartRouter.post('/addTocart', async (req, res) => {
     try {
         var post_data = req.body; //Lấy dữ liệu từ clietn
         var ProductID = post_data.ProductID;
-
         var email = post_data.email;
         var quantity = Number(post_data.quantity);//chuyển đổi quantity sang number
         cart.find({
@@ -66,8 +65,6 @@ cartRouter.post('/addTocart', async (req, res) => {
         });
     }
 })
-
-
 //delete cart
 cartRouter.delete('/delete', async (req, res) => {
     try {
@@ -88,11 +85,36 @@ cartRouter.delete('/delete', async (req, res) => {
         });
     }
 })
-
-
-//
-
-//update cart 
-
+cartRouter.get('/getCart', async (req, res) => {
+    try {
+        cart.findOne({'_email':'phu123456789'}, function (err, dulieu) {
+       res.status(201).json(dulieu);
+       //res.render('ViewProduct', { title: 'xem dữ liệu', products: dulieu })
+     })
+    } catch (err) {
+     res.status(500).json({
+       success: false,
+       message: err.message
+   });
+    }
+})
+cartRouter.post('/getEamil',async(req,res)=>{
+ 
+    var  post_data = req.body; 
+    var email = post_data.email;
+        cart.aggregate([
+            {"$match": { "_email": email }},
+        {$lookup:{
+            from:'users',
+            localField:'_email',
+            foreignField:'_email',
+            as:'user',
+         
+    }}
+],function (err,data) {
+        if(err) throw err;
+          res.send(data);
+    });
+});
 module.exports = cartRouter;
 
