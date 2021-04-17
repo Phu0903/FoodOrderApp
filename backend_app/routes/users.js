@@ -57,7 +57,6 @@ userRouter.post('/dangky', async (req, res, next) => {
     });
   }
 });
-
 //đăng nhập
 userRouter.post('/dangnhap', async (req, res, next) => {
   try {
@@ -86,10 +85,7 @@ userRouter.post('/dangnhap', async (req, res, next) => {
     });
   }
 });
-
-
 //getInforUser
-
 userRouter.get('/inforUser/:email', async (req, res) => {
   try {
     var email = req.params.email;

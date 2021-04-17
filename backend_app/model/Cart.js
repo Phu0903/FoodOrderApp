@@ -1,10 +1,12 @@
 var mongoose = require('mongoose');
+var user = require('../model/User')
 var cart = new mongoose.Schema({
     _email:
      {
-         type:String,
+         type: String,
          required:true,
-         unique:true
+         unique:true,
+         ref: 'users'
      },
      _ProductID:
     {
