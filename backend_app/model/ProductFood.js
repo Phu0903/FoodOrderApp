@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var users = new mongoose.Schema({
     _ProductID: 'string',
     _NameProduct: 'string',
-    _Price: 'string',
+    _Price: 'number',
     _Info: 'string',
     _Image: 'string',
     _Category: 'string',

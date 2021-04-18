@@ -85,9 +85,12 @@ cartRouter.delete('/delete', async (req, res) => {
         });
     }
 })
-cartRouter.get('/getCart', async (req, res) => {
+cartRouter.get('/getCart/:email', async (req, res) => {
     try {
-        cart.findOne({'_email':'phu123456789'}, function (err, dulieu) {
+        var params_data = req.params;
+        var email = params_data.email;
+         //res.send(email);
+      cart.findOne({'_email':email}, function (err, dulieu) {
        res.status(201).json(dulieu);
        //res.render('ViewProduct', { title: 'xem dữ liệu', products: dulieu })
      })

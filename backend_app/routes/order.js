@@ -7,10 +7,11 @@ var ProductFood = require('../model/ProductFood');
 var orderList = require('../model/OrderList');
 const { json } = require('express');
 
+//New Order
 orderRouter.post('/new_oder', async (req, res, next) => {
   try {
     var post_data = req.body;
-    var email = post_data.eamil;
+    var email = post_data.email;
     var orderID = new Date().getTime();
     var createDate = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`;
     var total = post_data.total;
@@ -27,19 +28,7 @@ orderRouter.post('/new_oder', async (req, res, next) => {
     dataNewOrder.save(function (err) {
       res.status(201).json("thêm vào thành công")
     })
-    //ner orderlist
-    for (const product of req.body.orderList) {
-      var oderlistdata = {
-        '_OrderID': orderID,
-        '_ProductID': productID,
-        '_quantity': quantity
-      }
-      var neworderList = new orderList(oderlistdata)
-      neworderList.save(function (err) {
-        res.status(201).json('Thêm vào thành công')
-      })
-    }
-
+   
     //xóa cart
     cart.remove({
       '_email': email,
@@ -48,7 +37,7 @@ orderRouter.post('/new_oder', async (req, res, next) => {
     })
 
 
-  } catch (error) {
+  } catch (err) {
     res.status(500).json({
       success: false,
       message: err.message
@@ -57,6 +46,7 @@ orderRouter.post('/new_oder', async (req, res, next) => {
 
 });
 
+//Lấy Thông tin theo mã order
 orderRouter.get('/getOrderID/:orderID', async (req, res) => {
   try {
     var params_data = req.params;
@@ -88,7 +78,7 @@ orderRouter.get('/getOrderID/:orderID', async (req, res) => {
     })
 
 
-  } catch (error) {
+  } catch (err) {
     res.status(500).json({
       success: false,
       message: err.message
@@ -96,6 +86,7 @@ orderRouter.get('/getOrderID/:orderID', async (req, res) => {
   }
 })
 
+//Xem thông tin danh sách order theo người dùng
 orderRouter.get('/list/:email', async (req, res) => {
   try {
     order.findOne({ '_email': email }).sort({_createDay:1},function(err,data){
