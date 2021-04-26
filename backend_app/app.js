@@ -50,3 +50,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+//http://192.168.157.2:3000/indexRouter/getFood
