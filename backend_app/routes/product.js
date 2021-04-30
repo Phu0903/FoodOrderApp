@@ -80,11 +80,11 @@ router.get('/:IDProduct',async (req,res)=>{
 })
 
 
-//sắp xếp theo số lượng còn trong kho.
+//sắp xếp theo số lượng đã bán.
 router.get('/getSold/Sold', async (req, res) => {
   try {
     var mysort = { _Sold: 1 };
-   ProductFood.find({}).sort(mysort).exec(function(err,docs){ //Sắp xếp
+   ProductFood.find({}).sort(mysort).limit(5).exec(function(err,docs){ //Sắp xếp
     if (err) throw err;
     res.json(docs);
   })
