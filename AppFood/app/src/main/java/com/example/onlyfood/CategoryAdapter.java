@@ -12,11 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.onlyfood.model.Category;
-import com.example.onlyfood.model.FoodData;
 
 import java.util.List;
 
-public class CategoryAdapter extends RecyclerView.Adapter<PopularAdapter.PopularViewHolder>{
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>{
 
     private Context context;
     private List<Category> categoryList;
@@ -31,13 +30,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<PopularAdapter.Popular
      onBindViewHolder : chuyển dữ liệu phần tử vào ViewHolder*/
     @NonNull
     @Override
-    public PopularAdapter.PopularViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.popular_recycler_items, parent, false);
+    public CategoryAdapter.CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.category_recycler_items, parent, false);
         // here we need to create a layout for recyclerview cell items.
-        return new PopularAdapter.PopularViewHolder(view);
+        return new CategoryAdapter.CategoryViewHolder(view);
     }
     @Override
-    public void onBindViewHolder(@NonNull PopularAdapter.PopularViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CategoryAdapter.CategoryViewHolder holder, int position) {
         Category hero = categoryList.get(position);
         //lay anh tu drawble url luu o git
         Glide.with(context).load(context.getResources().
@@ -47,6 +46,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<PopularAdapter.Popular
         holder.popularName.setText(hero.get_NameCategory());
 
 
+
         /*holder.popularName.setText(popularList.get(position).get_NameProduct());*/
     }
 
@@ -54,13 +54,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<PopularAdapter.Popular
     public int getItemCount() {
         return  categoryList.size();
     }
-    public  static class PopularViewHolder extends RecyclerView.ViewHolder{
+    public  static class CategoryViewHolder extends RecyclerView.ViewHolder{
         ImageView popularImage;
         TextView popularName;
-        public PopularViewHolder(@NonNull View itemView) {
+
+        public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
-            popularName = itemView.findViewById(R.id.all_menu_name);
-            popularImage = itemView.findViewById(R.id.all_menu_image);
+            popularName = itemView.findViewById(R.id.popular_name);
+            popularImage = itemView.findViewById(R.id.popular_image);
+
+
 
         }
     }

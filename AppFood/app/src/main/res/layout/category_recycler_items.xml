@@ -11,7 +11,7 @@
     android:paddingRight="5dp">
 
     <ImageView
-        android:id="@+id/all_menu_image"
+        android:id="@+id/popular_image"
         android:layout_width="78dp"
         android:layout_height="57dp"
         android:layout_weight="1"
@@ -22,14 +22,14 @@
         tools:srcCompat="@drawable/hamburger" />
 
     <TextView
-        android:id="@+id/all_menu_name"
+        android:id="@+id/popular_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="món ăn"
         android:textColor="#000000"
         android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="@+id/all_menu_image"
-        app:layout_constraintStart_toStartOf="@+id/all_menu_image"
-        app:layout_constraintTop_toBottomOf="@+id/all_menu_image" />
+        app:layout_constraintEnd_toEndOf="@+id/popular_image"
+        app:layout_constraintStart_toStartOf="@+id/popular_image"
+        app:layout_constraintTop_toBottomOf="@+id/popular_image" />
 </androidx.constraintlayout.widget.ConstraintLayout>

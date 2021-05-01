@@ -31,7 +31,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularV
     @NonNull
     @Override
     public PopularViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.popular_recycler_items, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.popular_recycler, parent, false);
         // here we need to create a layout for recyclerview cell items.
 
 
@@ -43,8 +43,10 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularV
         FoodData hero = popularList.get(position);
         Glide.with(context).load(popularList.get(position).get_Image()).into(holder.popularImage);
         holder.popularName.setText(hero.get_NameProduct());
+        holder.popularPrice.setText(String.valueOf(hero.get_Price()));
+
        
-        /*holder.popularName.setText(popularList.get(position).get_NameProduct());*/
+
     }
 
     @Override
@@ -54,13 +56,14 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularV
 
     public  static class PopularViewHolder extends RecyclerView.ViewHolder{
         ImageView popularImage;
-        TextView popularName;
+        TextView popularName,popularPrice;
 
         public PopularViewHolder(@NonNull View itemView) {
             super(itemView);
+            popularPrice = itemView.findViewById(R.id.price);
+            popularName = itemView.findViewById(R.id.popular_name);
+            popularImage = itemView.findViewById(R.id.popular_image);
 
-            popularName = itemView.findViewById(R.id.all_menu_name);
-            popularImage = itemView.findViewById(R.id.all_menu_image);
 
         }
     }
