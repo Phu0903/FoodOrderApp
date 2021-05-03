@@ -1,6 +1,7 @@
-package com.example.onlyfood;
+package com.example.onlyfood.Adapater;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +12,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.onlyfood.model.Category;
+import com.example.onlyfood.Activity.CategoryDetailActivity;
+import com.example.onlyfood.Activity.MainActivity;
+import com.example.onlyfood.R;
+import com.example.onlyfood.model.CategoryModel;
+import com.example.onlyfood.model.FoodModel;
 
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>{
 
     private Context context;
-    private List<Category> categoryList;
+    private List<CategoryModel> categoryList;
 
-    public CategoryAdapter(Context context, List<Category> categoryList) {
+    public CategoryAdapter(MainActivity context, List<CategoryModel> categoryList) {
         this.context = context;
         this.categoryList = categoryList;
     }
@@ -37,13 +42,23 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     }
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.CategoryViewHolder holder, int position) {
-        Category hero = categoryList.get(position);
+        CategoryModel hero = categoryList.get(position);
         //lay anh tu drawble url luu o git
         Glide.with(context).load(context.getResources().
                 getIdentifier(categoryList.get(position).
                         get_ImageCategory(), "drawable", context.getPackageName())).
                 into(holder.popularImage);
         holder.popularName.setText(hero.get_NameCategory());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, CategoryDetailActivity.class);
+                i.putExtra("name",hero.get_NameCategory());
+                i.putExtra("image",hero.get_ImageCategory());
+                context.startActivity(i);
+            }
+        });
+
 
 
 

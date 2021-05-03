@@ -1,6 +1,6 @@
 package com.example.onlyfood.model;
 
-public class Category {
+public class CategoryModel {
     private String _NameCategory;
     private String _ImageCategory;
 

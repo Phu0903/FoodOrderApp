@@ -1,4 +1,4 @@
-package com.example.onlyfood;
+package com.example.onlyfood.Adapater;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,16 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.onlyfood.model.FoodData;
+import com.example.onlyfood.R;
+import com.example.onlyfood.model.FoodModel;
 
 import java.util.List;
 
 public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularViewHolder>{
 
     private Context context;
-    private List<FoodData> popularList;
+    private List<FoodModel> popularList;
 
-    public PopularAdapter(Context context, List<FoodData> popularList) {
+    public PopularAdapter(Context context, List<FoodModel> popularList) {
         this.context = context;
         this.popularList = popularList;
     }
@@ -40,7 +41,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularV
 
     @Override
     public void onBindViewHolder(@NonNull PopularViewHolder holder, int position) {
-        FoodData hero = popularList.get(position);
+        FoodModel hero = popularList.get(position);
         Glide.with(context).load(popularList.get(position).get_Image()).into(holder.popularImage);
         holder.popularName.setText(hero.get_NameProduct());
         holder.popularPrice.setText(String.valueOf(hero.get_Price()));

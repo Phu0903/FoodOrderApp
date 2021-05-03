@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class FoodData {
+public class FoodModel {
     private String _ProductID;
     private String _NameProduct;
     private Integer _Price;

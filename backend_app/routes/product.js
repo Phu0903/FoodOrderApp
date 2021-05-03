@@ -47,9 +47,9 @@ router.post('/AddProduct', function (req, res, next) {
 });
 
 //Xem sản phẩm theo category
-router.get('/:Category',async (req,res)=>{
+router.get('/getFoodByCategory',async (req,res)=>{
   try{
-    ProductFood.find({'_Category': req.params.Category},function(err,data)
+    ProductFood.find({'_Category': req.query.Category},function(err,data)
     {
       // res.render('ViewProduct',{title:'Xem dữ liệu', products:data})
       res.status(201).json(data);
