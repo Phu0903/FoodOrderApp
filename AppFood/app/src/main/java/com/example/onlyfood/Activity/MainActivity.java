@@ -24,31 +24,33 @@ import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
     private TextView textViewTerm;
-    RecyclerView popularRecyclerView, categoryRecyclerView, allMenuRecyclerView;
-    ApiServices apiInterface;
+    RecyclerView popularRecyclerView, categoryRecyclerView; // RecyclerView
+    ApiServices apiInterface; //Call ApiServices
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textViewTerm = findViewById(R.id.textView2);
-
+        //Using retrofit
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
-
+        //Call function
         CallListCategory(jsonPlaceHolderApi);
         CallListFoodPopular(jsonPlaceHolderApi);
+        //Find Id Text
+        textViewTerm = findViewById(R.id.textView2);
 
     }
+    //Call list data
     private void CallListCategory(ApiServices jsonPlaceHolderApi)
     {
+       //Save List Api from data to call
         Call<List<CategoryModel>> call = jsonPlaceHolderApi.getCategory();
-
         call.enqueue(new Callback<List<CategoryModel>>() {
             @Override
             public void onResponse(Call<List<CategoryModel>> call, Response<List<CategoryModel>> response) {
                 if (!response.isSuccessful()) {
-                    textViewTerm.setText("Code: " + response.code());
+                    textViewTerm.setText("Code: " + response.code()); //respone status api
                     return;
                 }
                 List<CategoryModel> posts = response.body();
@@ -64,9 +66,9 @@ public class MainActivity extends AppCompatActivity {
     CategoryAdapter categoryAdapter;
     private void  getCategoryData(List<CategoryModel> categoryListList) {
 
-        categoryRecyclerView = findViewById(R.id.category_recycler);
-        categoryAdapter = new CategoryAdapter(this, categoryListList);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        categoryRecyclerView = findViewById(R.id.category_recycler); //Tim category recycler view
+        categoryAdapter = new CategoryAdapter(MainActivity.this, categoryListList); //
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
         categoryRecyclerView.setLayoutManager(layoutManager);
         categoryRecyclerView.setAdapter(categoryAdapter);
     }

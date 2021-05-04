@@ -10,11 +10,11 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface ApiServices {
-    @GET("productRouter/getSold/Sold")  //Get food popular
+    @GET("productRouter/getSold/Sold")  //url get food popular
     Call<List<FoodModel>>  getFood();
-    @GET("categoryRouter/getCategory") //get category
+    @GET("categoryRouter/getCategory") //url get category
     Call<List<CategoryModel>>  getCategory();
-    @GET("productRouter/getFoodByCategory")
+    @GET("productRouter/getFoodByCategory")//url get Food by Category
     Call<List<FoodModel>> getFoodbyCategory(@Query("Category") String category);
 
 }

@@ -10,7 +10,9 @@
         android:id="@+id/constraintLayout9"
         android:layout_width="match_parent"
         android:layout_height="154dp"
+        android:layout_marginTop="68dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -42,10 +44,32 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_food_recycler"
-        android:layout_width="394dp"
-        android:layout_height="629dp"
+        android:layout_width="410dp"
+        android:layout_height="508dp"
+        android:layout_marginTop="155dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout9" />
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout9" >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/back_home"
+        android:layout_width="50dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        app:backgroundTint="#FFFFFF"
+        app:icon="?attr/homeAsUpIndicator"
+        app:iconGravity="textStart"
+        app:iconPadding="1dp"
+        app:iconSize="30dp"
+        app:iconTint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.761" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,9 @@ public class FoodModel {
     private String _Image;
     private String _Category;
     private String _Sold;
+
+
+    //Getter and Setter
     public String get_ProductID() {
         return _ProductID;
     }

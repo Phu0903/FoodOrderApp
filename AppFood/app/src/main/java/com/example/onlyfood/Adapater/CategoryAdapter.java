@@ -22,9 +22,10 @@ import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>{
 
-    private Context context;
-    private List<CategoryModel> categoryList;
+    private Context context; //Call context
+    private List<CategoryModel> categoryList; //Data
 
+    //constructor Category
     public CategoryAdapter(MainActivity context, List<CategoryModel> categoryList) {
         this.context = context;
         this.categoryList = categoryList;
@@ -46,7 +47,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         //lay anh tu drawble url luu o git
         Glide.with(context).load(context.getResources().
                 getIdentifier(categoryList.get(position).
-                        get_ImageCategory(), "drawable", context.getPackageName())).
+                        get_ImageCategory(), "drawable", context.getPackageName())). //Lay anh ra tu resource
                 into(holder.popularImage);
         holder.popularName.setText(hero.get_NameCategory());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -59,10 +60,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             }
         });
 
-
-
-
-        /*holder.popularName.setText(popularList.get(position).get_NameProduct());*/
     }
 
     @Override
@@ -77,8 +74,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             super(itemView);
             popularName = itemView.findViewById(R.id.popular_name);
             popularImage = itemView.findViewById(R.id.popular_image);
-
-
 
         }
     }
