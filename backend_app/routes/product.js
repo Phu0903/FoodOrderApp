@@ -64,9 +64,9 @@ router.get('/getFoodByCategory',async (req,res)=>{
 
 
 //Xem từng chi tiết sản phẩm theo ID
-router.get('/:IDProduct',async (req,res)=>{
+router.get('/getDetailProduct',async (req,res)=>{
   try{
-    ProductFood.find({'_ProductID': req.params.IDProduct},function(err,data)
+    ProductFood.find({'_ProductID': req.query.IDProduct},function(err,data)
     {
       // res.render('ViewProduct',{title:'Xem dữ liệu', products:data})
       res.status(201).json(data);

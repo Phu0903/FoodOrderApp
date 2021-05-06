@@ -17,4 +17,5 @@ public interface ApiServices {
     @GET("productRouter/getFoodByCategory")//url get Food by Category
     Call<List<FoodModel>> getFoodbyCategory(@Query("Category") String category);
 
+
 }

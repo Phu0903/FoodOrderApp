@@ -49,6 +49,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 getIdentifier(categoryList.get(position).
                         get_ImageCategory(), "drawable", context.getPackageName())). //Lay anh ra tu resource
                 into(holder.popularImage);
+
+        //load ten prodcut
         holder.popularName.setText(hero.get_NameCategory());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,6 +1,7 @@
 package com.example.onlyfood.Adapater;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.onlyfood.Activity.CategoryDetailActivity;
+import com.example.onlyfood.Activity.DetailFoodActivity;
 import com.example.onlyfood.R;
 import com.example.onlyfood.model.FoodModel;
 
@@ -45,6 +48,19 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularV
         Glide.with(context).load(popularList.get(position).get_Image()).into(holder.popularImage);
         holder.popularName.setText(hero.get_NameProduct());
         holder.popularPrice.setText(String.valueOf(hero.get_Price()));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, DetailFoodActivity.class);
+                i.putExtra("ID_Product",hero.get_ProductID());
+                i.putExtra("Name_Product",hero.get_NameProduct());
+                i.putExtra("Price",String.valueOf(hero.get_Price()));
+                i.putExtra("Info",hero.get_Info());
+                i.putExtra("Image",hero.get_Image());
+                i.putExtra("Sold",hero.get_Sold());
+                context.startActivity(i);
+            }
+        });
 
        
 
