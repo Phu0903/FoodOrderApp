@@ -16,17 +16,16 @@ import com.example.onlyfood.Activity.CategoryDetailActivity;
 import com.example.onlyfood.Activity.MainActivity;
 import com.example.onlyfood.R;
 import com.example.onlyfood.model.CategoryModel;
-import com.example.onlyfood.model.FoodModel;
 
 import java.util.List;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>{
+public class CategoryAdapater extends RecyclerView.Adapter<CategoryAdapater.CategoryViewHolder>{
 
     private Context context; //Call context
     private List<CategoryModel> categoryList; //Data
 
     //constructor Category
-    public CategoryAdapter(MainActivity context, List<CategoryModel> categoryList) {
+    public CategoryAdapater(MainActivity context, List<CategoryModel> categoryList) {
         this.context = context;
         this.categoryList = categoryList;
     }
@@ -36,13 +35,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
      onBindViewHolder : chuyển dữ liệu phần tử vào ViewHolder*/
     @NonNull
     @Override
-    public CategoryAdapter.CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CategoryAdapater.CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.category_recycler_items, parent, false);
         // here we need to create a layout for recyclerview cell items.
-        return new CategoryAdapter.CategoryViewHolder(view);
+        return new CategoryAdapater.CategoryViewHolder(view);
     }
     @Override
-    public void onBindViewHolder(@NonNull CategoryAdapter.CategoryViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CategoryAdapater.CategoryViewHolder holder, int position) {
         CategoryModel hero = categoryList.get(position);
         //lay anh tu drawble url luu o git
         Glide.with(context).load(context.getResources().

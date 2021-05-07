@@ -12,13 +12,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.onlyfood.Adapater.PopularAdapter;
+import com.example.onlyfood.Adapater.ListFoodAdapater;
+import com.example.onlyfood.Adapater.PopularAdapater;
 import com.example.onlyfood.R;
 import com.example.onlyfood.model.FoodModel;
 import com.example.onlyfood.networking.ApiServices;
 import com.example.onlyfood.networking.RetrofitClient;
 
+
 import java.util.List;
+
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,13 +49,14 @@ public class CategoryDetailActivity extends AppCompatActivity {
                 into(imageView);
         itemName.setText(name);
 
-        BackHome.setOnClickListener(new View.OnClickListener() {
+       BackHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(CategoryDetailActivity.this,MainActivity.class);
-                startActivity(i);
+
+                finish();
             }
         });
+        /*getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
         CallListFoodPopular(jsonPlaceHolderApi);
@@ -78,14 +83,15 @@ public class CategoryDetailActivity extends AppCompatActivity {
         });
     }
 
-    PopularAdapter popularAdapter;
+    ListFoodAdapater ListFoodAdapater;
     private void  getPopularData(List<FoodModel> popularList){
 
         popularRecyclerView = findViewById(R.id.list_food_recycler);
-        popularAdapter = new PopularAdapter(CategoryDetailActivity.this, popularList);
+        ListFoodAdapater = new ListFoodAdapater(CategoryDetailActivity.this, popularList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(CategoryDetailActivity.this, LinearLayoutManager.VERTICAL, false);
         popularRecyclerView.setLayoutManager(layoutManager);
-        popularRecyclerView.setAdapter(popularAdapter);
+        popularRecyclerView.setAdapter(ListFoodAdapater);
+
 
     }
 

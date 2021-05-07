@@ -12,19 +12,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.onlyfood.Activity.CategoryDetailActivity;
 import com.example.onlyfood.Activity.DetailFoodActivity;
 import com.example.onlyfood.R;
 import com.example.onlyfood.model.FoodModel;
 
 import java.util.List;
 
-public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularViewHolder>{
+public class PopularAdapater extends RecyclerView.Adapter<PopularAdapater.PopularViewHolder>{
 
     private Context context;
     private List<FoodModel> popularList;
 
-    public PopularAdapter(Context context, List<FoodModel> popularList) {
+    public PopularAdapater(Context context, List<FoodModel> popularList) {
         this.context = context;
         this.popularList = popularList;
     }
@@ -58,7 +57,9 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularV
                 i.putExtra("Info",hero.get_Info());
                 i.putExtra("Image",hero.get_Image());
                 i.putExtra("Sold",hero.get_Sold());
+                i.putExtra("PopularAdapater","2");
                 context.startActivity(i);
+
             }
         });
 

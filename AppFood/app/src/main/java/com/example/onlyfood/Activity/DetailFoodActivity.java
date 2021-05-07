@@ -24,7 +24,7 @@ public class DetailFoodActivity extends AppCompatActivity {
     TextView itemName, itemPrice, itemRating,itemDetail;
     RatingBar ratingBar;
     Button BackHome;
-    String name, price, rating, imageUrl,ID_Product,detail;
+    String name, price, rating, imageUrl,ID_Product,detail,Adapater1,Adapater2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +35,10 @@ public class DetailFoodActivity extends AppCompatActivity {
         price = intent.getStringExtra("Price");
         imageUrl = intent.getStringExtra("Image");
         detail = intent.getStringExtra("Info");
+        Adapater1=intent.getStringExtra("ListFood");
+        Adapater2=intent.getStringExtra("PopularAdapater");
+
+
 
 
 
@@ -53,14 +57,16 @@ public class DetailFoodActivity extends AppCompatActivity {
         //ratingBar.setRating(Float.parseFloat(rating));
 
 
-        BackHome=findViewById(R.id.back_home2);
+       BackHome=findViewById(R.id.back_home2);
         BackHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(DetailFoodActivity.this,CategoryDetailActivity.class);
-                startActivity(i);
+                    finish();
+
             }
         });
+
+
 
 
 

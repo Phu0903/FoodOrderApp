@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.onlyfood.Adapater.CategoryAdapter;
-import com.example.onlyfood.Adapater.PopularAdapter;
+import com.example.onlyfood.Adapater.CategoryAdapater;
+import com.example.onlyfood.Adapater.PopularAdapater;
 import com.example.onlyfood.R;
 import com.example.onlyfood.networking.ApiServices;
 import com.example.onlyfood.networking.RetrofitClient;
@@ -63,14 +63,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    CategoryAdapter categoryAdapter;
+    CategoryAdapater categoryAdapter;
     private void  getCategoryData(List<CategoryModel> categoryListList) {
 
         categoryRecyclerView = findViewById(R.id.category_recycler); //Tim category recycler view
-        categoryAdapter = new CategoryAdapter(MainActivity.this, categoryListList); //
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        categoryAdapter = new CategoryAdapater(MainActivity.this, categoryListList); //
+       // RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+       // layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         categoryRecyclerView.setLayoutManager(layoutManager);
         categoryRecyclerView.setAdapter(categoryAdapter);
+
+
+
     }
     private void CallListFoodPopular(ApiServices jsonPlaceHolderApi)
     {
@@ -93,11 +99,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    PopularAdapter popularAdapter;
+    PopularAdapater popularAdapter;
     private void  getPopularData(List<FoodModel> popularList){
 
         popularRecyclerView = findViewById(R.id.popular_recycler);
-        popularAdapter = new PopularAdapter(this, popularList);
+        popularAdapter = new PopularAdapater(this, popularList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         popularRecyclerView.setLayoutManager(layoutManager);
         popularRecyclerView.setAdapter(popularAdapter);
