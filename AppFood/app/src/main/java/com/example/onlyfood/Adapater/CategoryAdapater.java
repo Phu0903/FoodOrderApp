@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.onlyfood.Activity.CategoryDetailActivity;
+import com.example.onlyfood.Activity.HomeActivity;
 import com.example.onlyfood.Activity.MainActivity;
 import com.example.onlyfood.R;
 import com.example.onlyfood.model.CategoryModel;
@@ -25,7 +26,7 @@ public class CategoryAdapater extends RecyclerView.Adapter<CategoryAdapater.Cate
     private List<CategoryModel> categoryList; //Data
 
     //constructor Category
-    public CategoryAdapater(MainActivity context, List<CategoryModel> categoryList) {
+    public CategoryAdapater(Context context, List<CategoryModel> categoryList) {
         this.context = context;
         this.categoryList = categoryList;
     }

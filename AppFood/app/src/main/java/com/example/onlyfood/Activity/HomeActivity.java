@@ -1,64 +1,63 @@
 package com.example.onlyfood.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.Context;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.onlyfood.R;
-import com.example.onlyfood.networking.ApiServices;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.onlyfood.Adapater.CategoryAdapater;
+import com.example.onlyfood.Adapater.PopularAdapater;
+import com.example.onlyfood.R;
+import com.example.onlyfood.model.CategoryModel;
+import com.example.onlyfood.model.FoodModel;
+import com.example.onlyfood.networking.ApiServices;
+import com.example.onlyfood.networking.RetrofitClient;
+
+import org.w3c.dom.Text;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
+public class HomeActivity extends Fragment {
     private TextView textViewTerm;
     RecyclerView popularRecyclerView, categoryRecyclerView; // RecyclerView
     ApiServices apiInterface; //Call ApiServices
-
-    BottomNavigationView bottomNavigationView;
+    Context context;
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View mView = inflater.inflate(R.layout.home_layout, null);
         //Using retrofit
-        /*Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
         //Call function
         CallListCategory(jsonPlaceHolderApi);
         CallListFoodPopular(jsonPlaceHolderApi);
+        context = container.getContext();
         //Find Id Text
-        textViewTerm = findViewById(R.id.textView2);*/
-        bottomNavigationView=findViewById(R.id.button_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new HomeActivity()).commit();
-        }
+        textViewTerm =mView.findViewById(R.id.textView2);
+        popularRecyclerView = mView.findViewById(R.id.popular_recycler);
+        categoryRecyclerView = mView.findViewById(R.id.category_recycler); //Tim category recycler view
+        return inflater.inflate(R.layout.home_layout, container, false);
+
     }
-
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFragment = null;
-                    switch (item.getItemId()) {
-                        case R.id.nav_home:
-                            selectedFragment = new HomeActivity();
-                            break;
-
-                    }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,
-                            selectedFragment).commit();
-                    return true;
-                }
-            };
-}
     //Call list data
-    /*private void CallListCategory(ApiServices jsonPlaceHolderApi)
+    private void CallListCategory(ApiServices jsonPlaceHolderApi)
     {
-       //Save List Api from data to call
+        //Save List Api from data to call
         Call<List<CategoryModel>> call = jsonPlaceHolderApi.getCategory();
         call.enqueue(new Callback<List<CategoryModel>>() {
             @Override
@@ -80,11 +79,11 @@ public class MainActivity extends AppCompatActivity {
     CategoryAdapater categoryAdapter;
     private void  getCategoryData(List<CategoryModel> categoryListList) {
 
-        categoryRecyclerView = findViewById(R.id.category_recycler); //Tim category recycler view
-        categoryAdapter = new CategoryAdapater(MainActivity.this, categoryListList); //
-       // RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-       // layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+
+        categoryAdapter = new CategoryAdapater(context, categoryListList); //
+        // RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+        // layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         categoryRecyclerView.setLayoutManager(layoutManager);
         categoryRecyclerView.setAdapter(categoryAdapter);
@@ -116,20 +115,17 @@ public class MainActivity extends AppCompatActivity {
     PopularAdapater popularAdapter;
     private void  getPopularData(List<FoodModel> popularList){
 
-        popularRecyclerView = findViewById(R.id.popular_recycler);
-        popularAdapter = new PopularAdapater(this, popularList);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+
+        popularAdapter = new PopularAdapater(context, popularList);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         popularRecyclerView.setLayoutManager(layoutManager);
         popularRecyclerView.setAdapter(popularAdapter);
 
     }
 
-    private void mapping()
-    {
-
-    }*/
 
 
+}
 
 
 

@@ -14,6 +14,7 @@ userRouter.post('/dangky', async (req, res, next) => {
     var phonenumber = post_data.phonenumber;
     var InfoUser = post_data.InfoUser;
     var address = post_data.address
+    console.log(name);
     if (!email || !req.body.password) {
       return res
         .status(400)
