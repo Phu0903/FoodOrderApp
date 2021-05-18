@@ -29,9 +29,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeActivity extends Fragment {
     private TextView textViewTerm;
+
     RecyclerView popularRecyclerView, categoryRecyclerView; // RecyclerView
     ApiServices apiInterface; //Call ApiServices
     Context context;
@@ -47,11 +49,12 @@ public class HomeActivity extends Fragment {
         CallListCategory(jsonPlaceHolderApi);
         CallListFoodPopular(jsonPlaceHolderApi);
         context = container.getContext();
+
         //Find Id Text
         textViewTerm =mView.findViewById(R.id.textView2);
         popularRecyclerView = mView.findViewById(R.id.popular_recycler);
         categoryRecyclerView = mView.findViewById(R.id.category_recycler); //Tim category recycler view
-        return inflater.inflate(R.layout.home_layout, container, false);
+        return mView;
 
     }
     //Call list data

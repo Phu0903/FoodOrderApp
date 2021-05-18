@@ -48,8 +48,11 @@ public class DetailFoodActivity extends AppCompatActivity {
         itemDetail = findViewById(R.id.textView8);
         //itemRating = findViewById(R.id.rating);
 
+        Glide.with(getApplicationContext())
+                .load(getResources()
+                        .getIdentifier(imageUrl, "drawable", this.getPackageName())).into(imageView);
 
-        Glide.with(getApplicationContext()).load(imageUrl).into(imageView);
+       // Glide.with(getApplicationContext()).load(imageUrl).into(imageView);
         itemName.setText(name);
         itemPrice.setText(price);
         itemDetail.setText(detail);

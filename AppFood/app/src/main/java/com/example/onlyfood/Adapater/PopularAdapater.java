@@ -44,7 +44,11 @@ public class PopularAdapater extends RecyclerView.Adapter<PopularAdapater.Popula
     @Override
     public void onBindViewHolder(@NonNull PopularViewHolder holder, int position) {
         FoodModel hero = popularList.get(position);
-        Glide.with(context).load(popularList.get(position).get_Image()).into(holder.popularImage);
+        Glide.with(context).load(context.getResources().
+                getIdentifier(popularList.get(position).
+                        get_Image(), "drawable", context.getPackageName())). //Lay anh ra tu resource
+                into(holder.popularImage);
+        //Glide.with(context).load(popularList.get(position).get_Image()).into(holder.popularImage);
         holder.popularName.setText(hero.get_NameProduct());
         holder.popularPrice.setText(String.valueOf(hero.get_Price()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
