@@ -51,7 +51,7 @@ orderRouter.get('/getOrderID/:orderID', async (req, res) => {
   try {
     var params_data = req.params;
     var orderID = params_data.orderID;
-    order.findOne({ '_OrderID': orderID }).count(function (err, number) {
+    order.findOne({ '_total': orderID }).count(function (err, number) {
       if (number == 0) {
         res.json({
           success: false,
@@ -102,5 +102,22 @@ orderRouter.get('/list/:email', async (req, res) => {
       });
   }
 });
+
+//Total
+orderRouter.get('/getbyTotal', async (req, res) => {
+  try {
+    var params_data = req.params;
+    var orderID = params_data.orderID;
+    
+    order.find({'_total':1}, function (err, dulieu) {
+      res.status(201).json(dulieu)});
+  
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+  });
+  }
+})
 
 module.exports = orderRouter;

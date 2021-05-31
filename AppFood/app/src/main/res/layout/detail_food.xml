@@ -146,7 +146,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/AddToCart"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Add to cart"

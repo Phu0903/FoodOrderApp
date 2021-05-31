@@ -2,6 +2,7 @@ package com.example.onlyfood.Adapater;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,9 +56,12 @@ public class CategoryAdapater extends RecyclerView.Adapter<CategoryAdapater.Cate
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+
+                bundle.putString("name",hero.get_NameCategory());
+                bundle.putString("image",hero.get_ImageCategory());
                 Intent i = new Intent(context, CategoryDetailActivity.class);
-                i.putExtra("name",hero.get_NameCategory());
-                i.putExtra("image",hero.get_ImageCategory());
+                i.putExtras(bundle);
                 context.startActivity(i);
             }
         });

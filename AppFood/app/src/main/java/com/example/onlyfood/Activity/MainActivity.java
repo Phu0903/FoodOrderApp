@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.nav_home:
                             selectedFragment = new HomeActivity();
                             break;
+                        case R.id.nav_person:
+                            selectedFragment = new UserActivity();
+                            break;
 
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,

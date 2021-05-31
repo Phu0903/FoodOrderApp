@@ -14,6 +14,16 @@ cartRouter.post('/addTocart', async (req, res) => {
         var ProductID = post_data.ProductID;
         var email = post_data.email;
         var quantity = Number(post_data.quantity);//chuyển đổi quantity sang number
+        
+        if(!ProductID || !email || !quantity)
+        {
+            res.json({
+                success:false,
+                message:"false"
+                
+            })
+        }
+        else{
         cart.find({
             '_email': email,
             '_ProductID': ProductID,
@@ -38,26 +48,42 @@ cartRouter.post('/addTocart', async (req, res) => {
 
                         }, function (err, data) {
                         if (err) { res.status(500).json(err) }
-                        else { res.status(201).json("Thêm vào thành công") }
+                        else { res.status(201).json("Thêm vào thành công") 
+                        }
                     })
 
                 })
             }
             else {//nếu ko có phần tử thì thêm mới 
                 var dataCartNew = {
-                    '_email': email,
+                   
                     '_ProductID': ProductID,
-                    '_quantity': quantity,
+                    '_quantity':quantity,
+                    '_email': email,
+                   
                 }
-                var dataNewCart = new cart(dataCartNew);
-                dataNewCart.save(function (err) {
-                    res.status(201).json("Thêm vào thành công")
+                console.log(dataCartNew)
+                var dataNewCart =  new cart(dataCartNew);
+                dataNewCart.save(function (err,data) {
+                    if(err){
+                        res.json({
+                            success:false,
+                            message:"ko Oke"
+                            })
+                    }else{
+                        res.status(201).json({
+                            success:true,
+                            message:"oke"
+
+                        })
+                    }
+                   
                 });
 
 
             }
         })
-
+        }
     } catch (err) {
         res.status(500).json({
             success: false,
