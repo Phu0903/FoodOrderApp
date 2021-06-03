@@ -6,15 +6,38 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     tools:context="com.example.homepc.restauranteatitapp.SignUpPage">
-    <TextView
-        android:layout_width="match_parent"
+
+    <Button
+        android:id="@+id/registerChange"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:text="Sign Up Page"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="65dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="660dp"
+        android:background="#39796b"
+        android:backgroundTint="#A9d440"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="Register"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:gravity="center_horizontal" />
+        app:backgroundTint="#549A35"></Button>
+
+    <Button
+        android:id="@+id/signinChange"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="230dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="660dp"
+        android:background="#39796b"
+        android:backgroundTint="#A9d440"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="Sign In"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#090B08"></Button>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,13 +97,16 @@
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="120dp"
         android:background="#39796b"
         android:backgroundTint="#39796b"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:radius="50dp"
-        android:text="Add Account"
+        android:text="Register"
         android:textColor="#fff"
         app:backgroundTint="#549A35" />
+
+
 </RelativeLayout>
+
