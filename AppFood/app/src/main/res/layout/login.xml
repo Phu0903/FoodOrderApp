@@ -42,7 +42,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical" >
+
 
 
         <EditText
@@ -52,11 +53,11 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="200dp"
             android:background="@drawable/edittextdesign"
-            android:hint="Enter Name"
             android:inputType="textCapWords"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textColorHint="#FFFFFF" />
+
 
         <EditText
             android:id="@+id/signin_password"
@@ -65,7 +66,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/edittextdesign"
-            android:hint="Enter Password"
+
             android:inputType="textPassword"
             android:textAlignment="center"
             android:textColor="#FFFFFF"

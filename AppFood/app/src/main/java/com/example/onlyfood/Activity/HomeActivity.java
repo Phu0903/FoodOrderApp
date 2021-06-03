@@ -2,6 +2,7 @@ package com.example.onlyfood.Activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.onlyfood.Adapater.CategoryAdapater;
 import com.example.onlyfood.Adapater.PopularAdapater;
 import com.example.onlyfood.R;
+import com.example.onlyfood.model.CartModel;
 import com.example.onlyfood.model.CategoryModel;
 import com.example.onlyfood.model.FoodModel;
 import com.example.onlyfood.networking.ApiServices;
@@ -29,9 +31,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeActivity extends Fragment {
     private TextView textViewTerm;
+
     RecyclerView popularRecyclerView, categoryRecyclerView; // RecyclerView
     ApiServices apiInterface; //Call ApiServices
     Context context;
@@ -46,12 +50,15 @@ public class HomeActivity extends Fragment {
         //Call function
         CallListCategory(jsonPlaceHolderApi);
         CallListFoodPopular(jsonPlaceHolderApi);
+
         context = container.getContext();
+        //
+
         //Find Id Text
         textViewTerm =mView.findViewById(R.id.textView2);
         popularRecyclerView = mView.findViewById(R.id.popular_recycler);
         categoryRecyclerView = mView.findViewById(R.id.category_recycler); //Tim category recycler view
-        return inflater.inflate(R.layout.home_layout, container, false);
+        return mView;
 
     }
     //Call list data
@@ -83,8 +90,9 @@ public class HomeActivity extends Fragment {
         categoryAdapter = new CategoryAdapater(context, categoryListList); //
         // RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         // layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+       // LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        //layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         categoryRecyclerView.setLayoutManager(layoutManager);
         categoryRecyclerView.setAdapter(categoryAdapter);
 
@@ -122,6 +130,7 @@ public class HomeActivity extends Fragment {
         popularRecyclerView.setAdapter(popularAdapter);
 
     }
+
 
 
 

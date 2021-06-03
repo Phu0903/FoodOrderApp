@@ -74,7 +74,9 @@ userRouter.post('/dangnhap', async (req, res, next) => {
             res.status(400).json('Wrong password or email');
           }
           else {
-            res.status(200).json('Login success');
+            res.status(201).json({
+              
+              "message":'Login success'});
           }
         })
       }
@@ -87,10 +89,10 @@ userRouter.post('/dangnhap', async (req, res, next) => {
   }
 });
 //getInforUser
-userRouter.get('/inforUser/:email', async (req, res) => {
+userRouter.get('/inforUser', async (req, res) => {
   try {
-    var email = req.params.email;
-    User.find({ '_email': email }, function (err, dulieu) {
+    var email = req.query.email;
+    User.findOne({ '_email': email }, function (err, dulieu) {
       res.status(200).json(dulieu);
     })
   } catch (err) {
