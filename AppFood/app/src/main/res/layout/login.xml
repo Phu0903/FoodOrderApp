@@ -6,53 +6,70 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     tools:context="com.example.homepc.restauranteatitapp.SignInPage">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login Page"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        android:textAlignment="center"
-        android:textStyle="bold"
 
-        />
+    <Button
+        android:id="@+id/registerChange"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="65dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="660dp"
+        android:background="#39796b"
+        android:backgroundTint="#A9d440"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="Register"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#090B08"></Button>
+
+    <Button
+        android:id="@+id/signinChange"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="230dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="660dp"
+        android:background="#39796b"
+        android:backgroundTint="#A9d440"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="Sign In"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#A9d440"></Button>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-
-
+        android:orientation="vertical">
 
 
         <EditText
             android:id="@+id/signin_id"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
-            android:inputType="textCapWords"
-            android:hint="Enter Name"
-            android:background="@drawable/edittextdesign"
-            android:textColorHint="#FFFFFF"
             android:layout_marginLeft="30dp"
-            android:textAlignment="center"
             android:layout_marginTop="200dp"
+            android:background="@drawable/edittextdesign"
+            android:hint="Enter Name"
+            android:inputType="textCapWords"
+            android:textAlignment="center"
             android:textColor="#FFFFFF"
-            />
+            android:textColorHint="#FFFFFF" />
 
         <EditText
             android:id="@+id/signin_password"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="Enter Password"
-            android:background="@drawable/edittextdesign"
-            android:textColorHint="#FFFFFF"
-            android:textAlignment="center"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edittextdesign"
+            android:hint="Enter Password"
+            android:inputType="textPassword"
+            android:textAlignment="center"
             android:textColor="#FFFFFF"
-            />
+            android:textColorHint="#FFFFFF" />
 
     </LinearLayout>
 
@@ -63,7 +80,7 @@
         android:text="Remember me"
         android:textColor="#FFFFFF"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="160dp"
+        android:layout_marginBottom="200dp"
         />
 
     <TextView
@@ -74,7 +91,7 @@
         android:textColor="#FFFFFF"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="170dp"
+        android:layout_marginBottom="210dp"
         android:layout_marginRight="5dp"
 
         />
@@ -85,9 +102,9 @@
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="35dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="100dp"
         android:background="#39796b"
         android:backgroundTint="#A9d440"
         android:paddingLeft="16dp"
@@ -95,6 +112,8 @@
         android:text="Sign In"
         android:textColor="#FFFFFF"
         app:backgroundTint="#549A35"></Button>
+
+
 
 
 
