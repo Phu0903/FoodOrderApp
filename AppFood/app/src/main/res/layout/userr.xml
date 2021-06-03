@@ -40,7 +40,7 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/tv_name"
+            android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgUser"
@@ -48,7 +48,6 @@
             android:layout_marginTop="15sp"
             android:background="#fece2f"
             android:fontFamily="@font/acme"
-            android:text="Name"
             android:textColor="@color/black"
             android:textSize="32sp" />
 
@@ -97,13 +96,12 @@
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/user_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:fontFamily="@font/acme"
                     android:phoneNumber="false"
-                    android:text="nguyenvana@gmail.com"
                     android:textColor="@color/black"
                     android:textSize="24sp" />
 
@@ -131,12 +129,12 @@
                     android:textSize="24sp" />
 
                 <TextView
+                    android:id="@+id/user_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:fontFamily="@font/acme"
                     android:phoneNumber="true"
-                    android:text="0987654321"
                     android:textColor="@color/black"
                     android:textSize="24sp" />
 
@@ -154,6 +152,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/user_address"
                     android:layout_width="146dp"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/icons8_facebook_24"
@@ -167,7 +166,6 @@
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:fontFamily="@font/acme"
-                    android:text="faceboook.com/techpropreview"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -215,7 +213,7 @@
             app:iconTint="?attr/colorBackgroundFloating" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/signout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"

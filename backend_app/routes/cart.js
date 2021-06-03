@@ -48,7 +48,11 @@ cartRouter.post('/addTocart', async (req, res) => {
 
                         }, function (err, data) {
                         if (err) { res.status(500).json(err) }
-                        else { res.status(201).json("Thêm vào thành công") 
+                        else {
+                             res.status(201).json({
+                            "success":"true",
+                            "message":"Bỏ vào giỏ thành công"
+                        }) 
                         }
                     })
 
@@ -72,8 +76,8 @@ cartRouter.post('/addTocart', async (req, res) => {
                             })
                     }else{
                         res.status(201).json({
-                            success:true,
-                            message:"oke"
+                            "success":"true",
+                            "message":"Bỏ vào giỏ thành công"
 
                         })
                     }

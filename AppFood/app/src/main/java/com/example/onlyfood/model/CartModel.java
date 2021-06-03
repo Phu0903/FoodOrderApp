@@ -1,28 +1,33 @@
 package com.example.onlyfood.model;
 
 public class CartModel {
-    private String _email;
-    private String _ProductID;
+    private String email;
+    private String ProductID;
     private String quantity;
+    private String message;
 
-    public CartModel() {
-
+    public String getMessage() {
+        return message;
     }
 
-    public String get_email() {
-        return _email;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public void set_email(String _email) {
-        this._email = _email;
+    public String getEmail() {
+        return email;
     }
 
-    public String get_ProductID() {
-        return _ProductID;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void set_ProductID(String _ProductID) {
-        this._ProductID = _ProductID;
+    public String getProductID() {
+        return ProductID;
+    }
+
+    public void setProductID(String productID) {
+        ProductID = productID;
     }
 
     public String getQuantity() {
@@ -33,9 +38,9 @@ public class CartModel {
         this.quantity = quantity;
     }
 
-    public CartModel(String _email, String _ProductID, String quantity) {
-        this._email = _email;
-        this._ProductID = _ProductID;
+    public CartModel(String email, String productID, String quantity) {
+        this.email = email;
+        this.ProductID = productID;
         this.quantity = quantity;
     }
 }

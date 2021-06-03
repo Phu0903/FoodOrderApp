@@ -95,7 +95,7 @@ public class DetailFoodActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<CartModel> call, Response<CartModel> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(DetailFoodActivity.this,response.message(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(DetailFoodActivity.this,response.body().getMessage(),Toast.LENGTH_LONG).show();
                     Log.d(response.message(), "onResponse: ");
                 }else{
                     Toast.makeText(DetailFoodActivity.this,"failed",Toast.LENGTH_LONG).show();
