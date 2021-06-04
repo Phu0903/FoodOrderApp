@@ -16,9 +16,7 @@ var users = new mongoose.Schema({
         type:String,
         required:true
     },
-    _InfoUser:{
-        type:String
-    },
+ 
     _PhoneNumber:
     {
           type:Number,

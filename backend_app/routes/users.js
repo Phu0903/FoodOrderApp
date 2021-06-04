@@ -12,23 +12,22 @@ userRouter.post('/dangky', async (req, res, next) => {
     var name = post_data.name;
     var email = post_data.email;
     var phonenumber = post_data.phonenumber;
-    var InfoUser = post_data.InfoUser;
     var address = post_data.address
     console.log(name);
     if (!email || !req.body.password) {
       return res
         .status(400)
-        .json({ success: false, message: "Username or password not empty" })
+        .json({ success: false, "message": "Username or password not empty" })
     }
     else if (!name) {
       return res
         .status(400)
-        .json({ success: false, message: "Name not empty" })
+        .json({ success: false, "message": "Name not empty" })
     }
     else if (!phonenumber) {
       return res
         .status(400)
-        .json({ success: false, message: "Phonenumber not empty" })
+        .json({ success: false, "message": "Phonenumber not empty" })
     }
     else {
       var hashPassword = bcryptjs.hashSync(req.body.password, 10);
@@ -36,18 +35,18 @@ userRouter.post('/dangky', async (req, res, next) => {
         '_email': email,
         '_password': hashPassword,
         '_name': name,
-        '_InfoUser': InfoUser,
         '_PhoneNumber': phonenumber,
         '_Address': address
       }
       User.findOne({ '_email': email }).count(function (err, number) {
         if (number != 0) {
-          res.send('Email already exists');
+          res.status(400).json({ "message":'Email already exists'});
+          
         }
         else {
           var dulieu = new User(innsertUser);
           dulieu.save();
-          res.status(200).json('Register success');
+          res.status(200).json({ "message":'Register success'});
         }
       })
     }
@@ -65,18 +64,20 @@ userRouter.post('/dangnhap', async (req, res, next) => {
     var email = post_data.email;
     User.findOne({ '_email': email }).count(function (err, number) {
       if (number == 0) {
-        res.json('Email not exists');
+        res.status(400).json({"message":'Email not exists'});
       }
       else {
         User.findOne({ '_email': email }, function (error, data) {
 
           if (!bcryptjs.compareSync(req.body.password, data._password)) {
-            res.status(400).json('Wrong password or email');
+            res.status(400).json({"message":'Wrong email or password'});
           }
           else {
             res.status(201).json({
               
-              "message":'Login success'});
+              "message":'Login success'
+            
+            });
           }
         })
       }
