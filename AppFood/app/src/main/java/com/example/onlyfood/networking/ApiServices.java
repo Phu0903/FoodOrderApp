@@ -27,6 +27,9 @@ public interface ApiServices {
     @POST("usersRouter/dangnhap")
     Call<LoginRegisterModel> Login(@Body LoginRegisterModel loginRegisterModel);
 
+    @POST("usersRouter/dangky")
+    Call<LoginRegisterModel> Register(@Body LoginRegisterModel loginRegisterModel);
+
     @GET("/usersRouter/inforUser")
     Call<UserModel> getInforUser(@Query("email") String email);
 

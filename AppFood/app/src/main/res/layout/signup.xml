@@ -7,37 +7,16 @@
     android:background="@drawable/background"
     tools:context="com.example.homepc.restauranteatitapp.SignUpPage">
 
-    <Button
-        android:id="@+id/registerChange"
-        android:layout_width="130dp"
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="65dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="660dp"
-        android:background="#39796b"
-        android:backgroundTint="#A9d440"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:text="Register"
-        android:textColor="#FFFFFF"
-        app:backgroundTint="#549A35"></Button>
-
-    <Button
-        android:id="@+id/signinChange"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="230dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="660dp"
-        android:background="#39796b"
-        android:backgroundTint="#A9d440"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:text="Sign In"
-        android:textColor="#FFFFFF"
-        app:backgroundTint="#090B08"></Button>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo2" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,7 +25,7 @@
 
 
         <EditText
-            android:id="@+id/signup_id"
+            android:id="@+id/signup_name"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -57,7 +36,7 @@
             android:inputType="textCapWords"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF" />
+            android:textColorHint="@color/texthint" />
 
         <EditText
             android:id="@+id/signup_email"
@@ -71,7 +50,7 @@
             android:inputType="textCapWords"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF" />
+            android:textColorHint="@color/texthint" />
 
         <EditText
             android:id="@+id/signup_password"
@@ -85,27 +64,82 @@
             android:inputType="textPassword"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF" />
+            android:textColorHint="@color/texthint" />
+
+        <EditText
+            android:id="@+id/signup_phonenumber"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edittextdesign"
+            android:gravity="center_horizontal"
+            android:hint="Enter Phone Number"
+
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textColorHint="@color/texthint" />
+
+        <EditText
+            android:id="@+id/signup_address"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edittextdesign"
+            android:gravity="center_horizontal"
+            android:hint="Enter  address"
+
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textColorHint="@color/texthint" />
+
+        <LinearLayout
+            android:id="@+id/loginpage"
+            android:layout_width="match_parent"
+            android:layout_height="78dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/loginlayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Login
+"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="help
+"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/add_account"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="8dp"
+            android:background="#39796b"
+            android:backgroundTint="#39796b"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:radius="50dp"
+            android:text="Register"
+            android:textColor="#fff"
+            app:backgroundTint="#549A35" />
 
     </LinearLayout>
-
-
-    <Button
-        android:id="@+id/add_account"
-        android:layout_width="340dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="120dp"
-        android:background="#39796b"
-        android:backgroundTint="#39796b"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:radius="50dp"
-        android:text="Register"
-        android:textColor="#fff"
-        app:backgroundTint="#549A35" />
 
 
 </RelativeLayout>

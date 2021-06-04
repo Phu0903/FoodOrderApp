@@ -9,43 +9,81 @@
     android:layout_marginTop="4dp"
     android:layout_marginEnd="4dp"
     android:layout_marginRight="8dp"
-    android:background="#000000">
+    android:background="#FFFFFF">
 
 
-    <ImageView
-        android:id="@+id/popular_image"
-        android:layout_width="86dp"
-        android:layout_height="95dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/hamburger" />
-
-    <TextView
-        android:id="@+id/popular_name"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
 
-        android:text="Ten mon"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/price"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/popular_image"
-        app:layout_constraintTop_toTopOf="parent" />
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="center">
 
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:text="Giá"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/popular_image"
-        app:layout_constraintTop_toTopOf="@+id/popular_image" />
+            <ImageView
+                android:id="@+id/popular_image"
+                android:layout_width="wrap_content"
+                android:layout_height="95dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                app:srcCompat="@drawable/hamburger" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:id="@+id/popular_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/acme"
+                android:text="Có sách cần thanh lý"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="293dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:text="Price: "
+                    android:textAlignment="textEnd"
+                    android:textSize="22dp" />
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+
+                    android:drawablePadding="20px"
+
+                    android:text="6000"
+                    android:textColor="#E91E63"
+                    android:textSize="22dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

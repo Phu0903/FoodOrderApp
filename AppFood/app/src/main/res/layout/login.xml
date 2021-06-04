@@ -7,43 +7,21 @@
     android:background="@drawable/background"
     tools:context="com.example.homepc.restauranteatitapp.SignInPage">
 
-    <Button
-        android:id="@+id/registerChange"
-        android:layout_width="130dp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="65dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="660dp"
-        android:background="#39796b"
-        android:backgroundTint="#A9d440"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:text="Register"
-        android:textColor="#FFFFFF"
-        app:backgroundTint="#090B08"></Button>
-
-    <Button
-        android:id="@+id/signinChange"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="230dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="660dp"
-        android:background="#39796b"
-        android:backgroundTint="#A9d440"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:text="Sign In"
-        android:textColor="#FFFFFF"
-        app:backgroundTint="#A9d440"></Button>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo2" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
-
 
 
         <EditText
@@ -53,10 +31,11 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="200dp"
             android:background="@drawable/edittextdesign"
+            android:hint="Enter Email"
             android:inputType="textCapWords"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF" />
+            android:textColorHint="@color/texthint" />
 
 
         <EditText
@@ -67,35 +46,49 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/edittextdesign"
 
+            android:hint="Enter Password"
             android:inputType="textPassword"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF" />
+            android:textColorHint="@color/texthint" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/registerlayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Create Account"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+
+                android:text="Forgot Password"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="200dp"
+            android:text="Remember me"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
-
-    <CheckBox
-        android:id="@+id/checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Remember me"
-        android:textColor="#FFFFFF"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="200dp"
-        />
-
-    <TextView
-        android:id="@+id/forgetcheck"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Forgot Password"
-        android:textColor="#FFFFFF"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="210dp"
-        android:layout_marginRight="5dp"
-
-        />
 
 
     <Button

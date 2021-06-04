@@ -12,6 +12,16 @@ public class LoginRegisterModel {
     private String password;
     private String name;
     private  String phonenumber;
+    private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     private String message;
 
     public String getMessage() {
@@ -54,11 +64,12 @@ public class LoginRegisterModel {
         this.phonenumber = phonenumber;
     }
 
-    public LoginRegisterModel(String email, String password, String name, String phonenumber) {
+    public LoginRegisterModel(String email, String password, String name, String phonenumber,String address) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.phonenumber = phonenumber;
+        this.address = address;
     }
 
     public LoginRegisterModel(String email, String password) {
