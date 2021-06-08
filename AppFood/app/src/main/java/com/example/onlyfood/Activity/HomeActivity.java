@@ -1,6 +1,7 @@
 package com.example.onlyfood.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,13 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.onlyfood.Adapater.CategoryAdapater;
 import com.example.onlyfood.Adapater.PopularAdapater;
 import com.example.onlyfood.R;
-import com.example.onlyfood.model.CartModel;
 import com.example.onlyfood.model.CategoryModel;
 import com.example.onlyfood.model.FoodModel;
 import com.example.onlyfood.networking.ApiServices;
 import com.example.onlyfood.networking.RetrofitClient;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -31,11 +28,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeActivity extends Fragment {
     private TextView textViewTerm;
-
+    String email;
     RecyclerView popularRecyclerView, categoryRecyclerView; // RecyclerView
     ApiServices apiInterface; //Call ApiServices
     Context context;
@@ -50,13 +46,19 @@ public class HomeActivity extends Fragment {
         //Call function
         CallListCategory(jsonPlaceHolderApi);
         CallListFoodPopular(jsonPlaceHolderApi);
-
         context = container.getContext();
-        //
+        Intent intent = getActivity().getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            email= bundle.getString("username");
+        }
+        else {
+            Log.d("null","null");
+        }
 
         //Find Id Text
         textViewTerm =mView.findViewById(R.id.textView2);
-        popularRecyclerView = mView.findViewById(R.id.popular_recycler);
+        popularRecyclerView = mView.findViewById(R.id.cart_recycler);
         categoryRecyclerView = mView.findViewById(R.id.category_recycler); //Tim category recycler view
         return mView;
 
@@ -86,17 +88,10 @@ public class HomeActivity extends Fragment {
     CategoryAdapater categoryAdapter;
     private void  getCategoryData(List<CategoryModel> categoryListList) {
 
-
-        categoryAdapter = new CategoryAdapater(context, categoryListList); //
-        // RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-        // layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-       // LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+        categoryAdapter = new CategoryAdapater(context, categoryListList,email); //
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        //layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         categoryRecyclerView.setLayoutManager(layoutManager);
         categoryRecyclerView.setAdapter(categoryAdapter);
-
-
 
     }
     private void CallListFoodPopular(ApiServices jsonPlaceHolderApi)
@@ -122,17 +117,12 @@ public class HomeActivity extends Fragment {
 
     PopularAdapater popularAdapter;
     private void  getPopularData(List<FoodModel> popularList){
-
-
-        popularAdapter = new PopularAdapater(context, popularList);
+      popularAdapter = new PopularAdapater(context, popularList,email);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         popularRecyclerView.setLayoutManager(layoutManager);
         popularRecyclerView.setAdapter(popularAdapter);
 
     }
-
-
-
 
 }
 

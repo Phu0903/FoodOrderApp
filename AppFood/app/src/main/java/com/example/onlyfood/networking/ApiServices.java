@@ -10,6 +10,7 @@ import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -32,6 +33,13 @@ public interface ApiServices {
 
     @GET("/usersRouter/inforUser")
     Call<UserModel> getInforUser(@Query("email") String email);
+
+    @GET("/cartRouter/getCart")
+    Call<List<CartModel>> getCart(@Query("Email") String email);
+
+    @DELETE("/cartRouter/delete")
+    Call<CartModel> deleteItem(@Query("ProductID") String productid, @Query("email") String email);
+
 
 }
 //get

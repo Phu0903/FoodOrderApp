@@ -13,6 +13,15 @@ var cart = new mongoose.Schema({
         type:String,
         required:true
     },
+    _Image:{
+        type:String,
+    },
+    _NameProduct:{
+           type:String,
+    },
+    _Price:{
+        type:String,
+    },    
     _quantity:
     {
         type:String,

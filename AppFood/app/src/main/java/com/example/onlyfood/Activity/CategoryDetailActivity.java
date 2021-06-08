@@ -1,9 +1,6 @@
 package com.example.onlyfood.Activity;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.onlyfood.Adapater.ListFoodAdapater;
-import com.example.onlyfood.Adapater.PopularAdapater;
 import com.example.onlyfood.R;
 import com.example.onlyfood.model.FoodModel;
 import com.example.onlyfood.networking.ApiServices;
@@ -35,7 +31,7 @@ public class CategoryDetailActivity extends AppCompatActivity {
     RecyclerView popularRecyclerView;
     ImageView imageView;
     TextView itemName, itemPrice, itemRating;
-    String name,urlImage;
+    String name,urlImage,email;
     Button BackHome;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +40,7 @@ public class CategoryDetailActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         name = bundle.getString("name");
         urlImage = bundle.getString("image");
+        email = bundle.getString("email");
         init();
 
 
@@ -55,7 +52,6 @@ public class CategoryDetailActivity extends AppCompatActivity {
        BackHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 finish();
             }
         });
@@ -91,13 +87,11 @@ public class CategoryDetailActivity extends AppCompatActivity {
         imageView = findViewById(R.id.category_image2);
         itemName = findViewById(R.id.NameCategory);
         BackHome = findViewById(R.id.back_home);
-        popularRecyclerView = findViewById(R.id.list_food_recycler);
+        popularRecyclerView = findViewById(R.id.list_food_category);
     }
     ListFoodAdapater ListFoodAdapater;
     private void  getPopularData(List<FoodModel> popularList){
-
-
-        ListFoodAdapater = new ListFoodAdapater(CategoryDetailActivity.this, popularList);
+        ListFoodAdapater = new ListFoodAdapater(CategoryDetailActivity.this, popularList,email);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(CategoryDetailActivity.this, LinearLayoutManager.VERTICAL, false);
         popularRecyclerView.setLayoutManager(layoutManager);
         popularRecyclerView.setAdapter(ListFoodAdapater);

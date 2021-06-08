@@ -43,7 +43,9 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.nav_person:
                             selectedFragment = new UserActivity();
                             break;
-
+                        case R.id.nav_cart:
+                            selectedFragment = new CartActivity();
+                            break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,
                             selectedFragment).commit();

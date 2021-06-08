@@ -59,7 +59,6 @@ public class UserActivity extends Fragment {
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
             email= bundle.getString("username");
-            Log.d("email", email);
         }
         else {
             Log.d("null","null");
@@ -76,9 +75,7 @@ public class UserActivity extends Fragment {
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
                 getActivity().finish();
-
-
-            }
+          }
         });
 
         context = container.getContext();

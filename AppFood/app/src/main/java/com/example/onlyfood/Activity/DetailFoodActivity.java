@@ -1,9 +1,7 @@
 package com.example.onlyfood.Activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.NoCopySpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,10 +25,11 @@ import retrofit2.Retrofit;
 
 public class DetailFoodActivity extends AppCompatActivity {
     ImageView imageView;
-    TextView itemName, itemPrice, itemRating,itemDetail;
+    TextView itemName, itemPrice, itemRating,itemDetail,Number;
     RatingBar ratingBar;
-    Button BackHome,AddtoCart;
-    String name, price, rating, imageUrl,ID_Product,detail,Adapater1,Adapater2;
+    Button BackHome,AddtoCart,Add,Remove;
+    String name, price, rating, imageUrl,ID_Product,detail,Adapater1,Adapater2,email;
+    int count = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,23 +37,21 @@ public class DetailFoodActivity extends AppCompatActivity {
         ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
 
         setContentView(R.layout.detail_food);
+
+
+        init();
         Intent intent = getIntent();
-        ID_Product = intent.getStringExtra("ID_Product");
-        name = intent.getStringExtra("Name_Product");
-        price = intent.getStringExtra("Price");
-        imageUrl = intent.getStringExtra("Image");
-        detail = intent.getStringExtra("Info");
-        Adapater1=intent.getStringExtra("ListFood");
-        Adapater2=intent.getStringExtra("PopularAdapater");
+        Bundle bundle = intent.getExtras();
+        ID_Product = bundle.getString("ID_Product");
+        name = bundle.getString("Name_Product");
+        price = bundle.getString("Price");
+        imageUrl = bundle.getString("Image");
+        detail = bundle.getString("Info");
+        Adapater1=bundle.getString("ListFood");
+        Adapater2=bundle.getString("PopularAdapater");
+        email = bundle.getString("username");
+        Log.d("email",email);
 
-
-
-
-
-        imageView = findViewById(R.id.imageView5);
-        itemName = findViewById(R.id.name);
-        itemPrice = findViewById(R.id.price);
-        itemDetail = findViewById(R.id.textView8);
         //itemRating = findViewById(R.id.rating);
 
         Glide.with(getApplicationContext())
@@ -69,7 +66,7 @@ public class DetailFoodActivity extends AppCompatActivity {
         //ratingBar.setRating(Float.parseFloat(rating));
 
 
-       BackHome=findViewById(R.id.back_home2);
+
         BackHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +75,7 @@ public class DetailFoodActivity extends AppCompatActivity {
             }
 
         });
-        AddtoCart = findViewById(R.id.AddToCart);
+
         AddtoCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,8 +84,25 @@ public class DetailFoodActivity extends AppCompatActivity {
         });
 
     }
+    public void countIN(View view)
+    {
+        count++;
+        Number.setText(Integer.toString(count));
+    }
+    public void countDE(View view)
+    {
+        count--;
+        if(count < 0)
+        {
+            count=0;
+            Number.setText(Integer.toString(0));
+        }
+        else{
+            Number.setText(Integer.toString(count));
+        }
+    }
     private void createPost(ApiServices jsonPlaceHolderApi){
-        CartModel post = new CartModel("Toi@gmail.com","PZ05","2" );
+        CartModel post = new CartModel(email,ID_Product,Integer.toString(count));
 
         Call<CartModel> call = jsonPlaceHolderApi.createPost(post);
         call.enqueue(new Callback<CartModel>() {
@@ -108,4 +122,21 @@ public class DetailFoodActivity extends AppCompatActivity {
             }
         });
     }
+
+    public  void init()
+    {
+        AddtoCart = findViewById(R.id.AddToCart);
+        BackHome=findViewById(R.id.back_home2);
+        imageView = findViewById(R.id.imageView5);
+        itemName = findViewById(R.id.name);
+        itemPrice = findViewById(R.id.cart_totalprice);
+        itemDetail = findViewById(R.id.textView8);
+        Number= findViewById(R.id.number);
+        Add = findViewById(R.id.add);
+        Remove = findViewById(R.id.remove);
+
+
+    }
+
+
 }

@@ -2,6 +2,7 @@ package com.example.onlyfood.Adapater;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +23,12 @@ public class ListFoodAdapater extends RecyclerView.Adapter<ListFoodAdapater.List
 
     private Context context;
     private List<FoodModel> popularList;
+    private  String email;
 
-    public ListFoodAdapater(Context context, List<FoodModel> popularList) {
+    public ListFoodAdapater(Context context, List<FoodModel> popularList,String email) {
         this.context = context;
         this.popularList = popularList;
+        this.email=email;
     }
 
     /* getItemCount() : cho biết số phần tử của dữ liệu
@@ -36,8 +39,6 @@ public class ListFoodAdapater extends RecyclerView.Adapter<ListFoodAdapater.List
     public ListFoodAdapater.ListFoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.popular_recycler, parent, false);
         // here we need to create a layout for recyclerview cell items.
-
-
         return new ListFoodAdapater.ListFoodViewHolder(view);
     }
 
@@ -55,22 +56,21 @@ public class ListFoodAdapater extends RecyclerView.Adapter<ListFoodAdapater.List
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, DetailFoodActivity.class);
-                i.putExtra("ID_Product",hero.get_ProductID());
-                i.putExtra("Name_Product",hero.get_NameProduct());
-                i.putExtra("Price",String.valueOf(hero.get_Price()));
-                i.putExtra("Info",hero.get_Info());
-                i.putExtra("Image",hero.get_Image());
-                i.putExtra("Sold",hero.get_Sold());
-                i.putExtra("ListFood","1");
+                Bundle bundle = new Bundle();
+                bundle.putString("ID_Product",hero.get_ProductID());
+                bundle.putString("Name_Product",hero.get_NameProduct());
+                bundle.putString("Price",String.valueOf(hero.get_Price()));
+                bundle.putString("Info",hero.get_Info());
+                bundle.putString("Image",hero.get_Image());
+                bundle.putString("Sold",hero.get_Sold());
+                bundle.putString("username",email);
+                bundle.putString("ListFood","1");
+                i.putExtras(bundle);
                 context.startActivity(i);
 
             }
         });
-
-
-
     }
-
     @Override
     public int getItemCount() {
         return  popularList.size();
@@ -82,9 +82,9 @@ public class ListFoodAdapater extends RecyclerView.Adapter<ListFoodAdapater.List
 
         public ListFoodViewHolder(@NonNull View itemView) {
             super(itemView);
-            popularPrice = itemView.findViewById(R.id.price);
-            popularName = itemView.findViewById(R.id.popular_name);
-            popularImage = itemView.findViewById(R.id.popular_image);
+            popularPrice = itemView.findViewById(R.id.cart_totalprice);
+            popularName = itemView.findViewById(R.id.cart_name);
+            popularImage = itemView.findViewById(R.id.cart_image);
 
 
         }

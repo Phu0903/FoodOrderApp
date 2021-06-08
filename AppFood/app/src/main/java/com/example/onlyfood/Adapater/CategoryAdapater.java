@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.onlyfood.Activity.CategoryDetailActivity;
-import com.example.onlyfood.Activity.HomeActivity;
-import com.example.onlyfood.Activity.MainActivity;
 import com.example.onlyfood.R;
 import com.example.onlyfood.model.CategoryModel;
 
@@ -25,11 +23,13 @@ public class CategoryAdapater extends RecyclerView.Adapter<CategoryAdapater.Cate
 
     private Context context; //Call context
     private List<CategoryModel> categoryList; //Data
+    private String email;
 
     //constructor Category
-    public CategoryAdapater(Context context, List<CategoryModel> categoryList) {
+    public CategoryAdapater(Context context, List<CategoryModel> categoryList,String email) {
         this.context = context;
         this.categoryList = categoryList;
+        this.email = email;
     }
 
     /* getItemCount() : cho biết số phần tử của dữ liệu
@@ -57,7 +57,7 @@ public class CategoryAdapater extends RecyclerView.Adapter<CategoryAdapater.Cate
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-
+                bundle.putString("email",email);
                 bundle.putString("name",hero.get_NameCategory());
                 bundle.putString("image",hero.get_ImageCategory());
                 Intent i = new Intent(context, CategoryDetailActivity.class);
@@ -78,8 +78,8 @@ public class CategoryAdapater extends RecyclerView.Adapter<CategoryAdapater.Cate
 
         public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
-            popularName = itemView.findViewById(R.id.popular_name);
-            popularImage = itemView.findViewById(R.id.popular_image);
+            popularName = itemView.findViewById(R.id.cart_name);
+            popularImage = itemView.findViewById(R.id.cart_image);
 
         }
     }
