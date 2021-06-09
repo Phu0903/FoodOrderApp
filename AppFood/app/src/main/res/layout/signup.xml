@@ -132,12 +132,13 @@
             android:layout_marginRight="8dp"
             android:background="#39796b"
             android:backgroundTint="#39796b"
+            android:fontFamily="@font/acme"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:radius="50dp"
             android:text="Register"
             android:textColor="#fff"
-            app:backgroundTint="#549A35" />
+            app:backgroundTint="?android:attr/colorFocusedHighlight" />
 
     </LinearLayout>
 

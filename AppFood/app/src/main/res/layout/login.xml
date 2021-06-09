@@ -105,7 +105,7 @@
         android:paddingRight="16dp"
         android:text="Sign In"
         android:textColor="#FFFFFF"
-        app:backgroundTint="#549A35"></Button>
+        app:backgroundTint="?android:attr/colorFocusedHighlight"></Button>
 
 
 

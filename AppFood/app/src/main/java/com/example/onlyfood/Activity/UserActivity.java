@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -101,6 +102,7 @@ public class UserActivity extends Fragment {
                     address.setText(response.body().get_Address());
 
 
+
                 }
             }
 
@@ -110,6 +112,8 @@ public class UserActivity extends Fragment {
             }
         });
     }
+
+
 
 }
 

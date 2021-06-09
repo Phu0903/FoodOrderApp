@@ -60,7 +60,7 @@
                     android:fontFamily="@font/acme"
                     android:text="Có sách cần thanh lý"
                     android:textColor="@color/black"
-                    android:textSize="25dp" />
+                    android:textSize="20dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -95,6 +95,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
 
+                    android:gravity="center_vertical"
                     android:text="Price: "
                     android:textAlignment="textEnd"
                     android:textSize="22dp" />
@@ -102,11 +103,12 @@
                 <TextView
                     android:id="@+id/cart_totalprice"
                     android:layout_width="150dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="57dp"
                     android:layout_weight="0"
 
                     android:drawablePadding="20px"
 
+                    android:gravity="center_vertical"
                     android:text="6000"
                     android:textColor="#E91E63"
                     android:textSize="22dp" />
@@ -114,7 +116,7 @@
                 <ImageView
                     android:id="@+id/delete_item"
                     android:layout_width="60dp"
-                    android:layout_height="46dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="3"
                     app:srcCompat="@drawable/ic_baseline_delete_24" />
 

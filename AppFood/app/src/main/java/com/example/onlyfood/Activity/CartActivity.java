@@ -1,7 +1,9 @@
 package com.example.onlyfood.Activity;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,9 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -56,7 +60,9 @@ public class CartActivity extends Fragment {
             Log.d("null","null");
         }
         CallListFoodPopular(jsonPlaceHolderApi,email);
-
+        //
+        LocalBroadcastManager.getInstance(context).registerReceiver(mMessageReceiver,
+                new IntentFilter("custom-message"));
 
         //Find Id Text
         textViewTerm =mView.findViewById(R.id.textView2);
@@ -68,8 +74,9 @@ public class CartActivity extends Fragment {
         return mView;
 
     }
-    //Call list data
 
+
+    //Call list data
     private void CallListFoodPopular(ApiServices jsonPlaceHolderApi,String email)
     {
 
@@ -99,7 +106,16 @@ public class CartActivity extends Fragment {
             }
         });
     }
-
+    public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String qty = intent.getStringExtra("Price");
+            Integer total_temp;
+            Log.d("Total",total.toString());
+            total =  total - Integer.valueOf(qty);
+            cart_price.setText(total.toString());
+        }
+    };
     ListCartAdapater ListCart;
     private void  getPopularData(List<CartModel> popularList){
         ListCart = new ListCartAdapater(context, popularList);

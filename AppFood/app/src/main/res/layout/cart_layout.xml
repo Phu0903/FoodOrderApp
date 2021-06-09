@@ -90,9 +90,17 @@
 
             <Button
                 android:id="@+id/buy"
-                android:layout_width="match_parent"
-                android:layout_height="68dp"
-                android:text="Buy" />
+                android:layout_width="265dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/acme"
+                android:text="Buy"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:backgroundTint="?android:attr/colorFocusedHighlight"/>
 
         </LinearLayout>
 

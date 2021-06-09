@@ -15,13 +15,13 @@ orderRouter.post('/new_oder', async (req, res, next) => {
     var orderID = new Date().getTime();
     var createDate = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`;
     var total = post_data.total;
-    var status = post_data.status;
+   // var status = post_data.status;
     var orderdata = {
       '_email': email,
       '_OrderID': orderID,
       '_createDate': createDate,
       '_total': total,
-      '_status': status
+      '_status': "Đang xử lý đơn hàng"
 
     }
     var dataNewOrder = new order(orderdata);

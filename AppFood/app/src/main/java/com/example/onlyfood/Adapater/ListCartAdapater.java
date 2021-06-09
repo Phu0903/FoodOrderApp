@@ -1,6 +1,7 @@
 package com.example.onlyfood.Adapater;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -31,7 +33,7 @@ public class ListCartAdapater extends RecyclerView.Adapter<ListCartAdapater.List
 
     private Context context;
     private List<CartModel> itemCartList;
-
+    public String Temp_Price,Temp_Quantity;
 
     public ListCartAdapater(Context context, List<CartModel> popularList) {
         this.context = context;
@@ -47,6 +49,7 @@ public class ListCartAdapater extends RecyclerView.Adapter<ListCartAdapater.List
     @Override
     public ListCartAdapater.ListCartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.cart_list, parent, false);
+
         return new ListCartAdapater.ListCartViewHolder(view);
     }
 
@@ -62,7 +65,11 @@ public class ListCartAdapater extends RecyclerView.Adapter<ListCartAdapater.List
         holder.Name.setText(hero.get_NameProduct());
         holder.Price.setText(String.valueOf(hero.get_Price()));
         holder.quantity.setText(String.valueOf(hero.get_quantity()));
-        Log.d("Price",itemCartList.get(position).get_Price());
+        Temp_Price = hero.get_Price();
+        Temp_Quantity = hero.get_quantity();
+
+
+        //Log.d("Price",Temp);
         holder.remove_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,11 +77,17 @@ public class ListCartAdapater extends RecyclerView.Adapter<ListCartAdapater.List
                 CallListFoodCart(jsonPlaceHolderApi,hero.get_ProductID(),hero.get_email());
                 itemCartList.remove(position);
                 notifyDataSetChanged();//thay đổi Giao diện
-
+                 ///
+                Integer Total = Integer.valueOf(Temp_Price)*Integer.valueOf(Temp_Quantity);
+                Intent intent = new Intent("custom-message");
+                Log.d("Price",Total.toString());
+                intent.putExtra("Price",Total.toString());
+                LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 
             }
         });
     }
+
 
 
     @Override

@@ -1,7 +1,9 @@
 package com.example.onlyfood.Activity;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +22,7 @@ import com.example.onlyfood.Adapater.PopularAdapater;
 import com.example.onlyfood.R;
 import com.example.onlyfood.model.CategoryModel;
 import com.example.onlyfood.model.FoodModel;
+import com.example.onlyfood.model.UserModel;
 import com.example.onlyfood.networking.ApiServices;
 import com.example.onlyfood.networking.RetrofitClient;
 
@@ -30,7 +34,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class HomeActivity extends Fragment {
-    private TextView textViewTerm;
+    private TextView textViewTerm,fullname;
     String email;
     RecyclerView popularRecyclerView, categoryRecyclerView; // RecyclerView
     ApiServices apiInterface; //Call ApiServices
@@ -46,6 +50,7 @@ public class HomeActivity extends Fragment {
         //Call function
         CallListCategory(jsonPlaceHolderApi);
         CallListFoodPopular(jsonPlaceHolderApi);
+
         context = container.getContext();
         Intent intent = getActivity().getIntent();
         Bundle bundle = intent.getExtras();
@@ -55,14 +60,43 @@ public class HomeActivity extends Fragment {
         else {
             Log.d("null","null");
         }
+        callApiUser(jsonPlaceHolderApi,email);
+
 
         //Find Id Text
+        fullname = mView.findViewById(R.id.fullname);
         textViewTerm =mView.findViewById(R.id.textView2);
         popularRecyclerView = mView.findViewById(R.id.cart_recycler);
         categoryRecyclerView = mView.findViewById(R.id.category_recycler); //Tim category recycler view
         return mView;
 
     }
+
+    private void callApiUser(ApiServices jsonPlaceHolderApi,String email)
+    {
+        Call<UserModel> call = jsonPlaceHolderApi.getInforUser(email);
+
+        call.enqueue(new Callback<UserModel>() {
+            @Override
+            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("null",null);
+                    return;
+                }
+                else{
+                    fullname.setText(response.body().get_name());
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserModel> call, Throwable t) {
+
+            }
+        });
+    }
+
     //Call list data
     private void CallListCategory(ApiServices jsonPlaceHolderApi)
     {
