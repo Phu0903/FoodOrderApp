@@ -18,11 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.onlyfood.Activity.DetailFoodActivity;
+import com.example.onlyfood.Activity.HistoryDetailActivity;
 import com.example.onlyfood.R;
 import com.example.onlyfood.model.CartModel;
 import com.example.onlyfood.model.OrderListModel;
 import com.example.onlyfood.model.OrderModel;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -103,13 +105,14 @@ public class ListHistoryAdapater extends RecyclerView.Adapter<ListHistoryAdapate
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, DetailFoodActivity.class);
+                Intent i = new Intent(context, HistoryDetailActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("PhoneNumber",hero.get_phonenumber());
                 bundle.putString("Address",hero.get_address());
                 bundle.putString("ID",hero.get_OrderID());
-
-
+                bundle.putString("Quantity",total.toString());
+                bundle.putString("Total",hero.get_total());
+                bundle.putSerializable("Product",(Serializable)orderListModels);
                 i.putExtras(bundle);
                 context.startActivity(i);
 

@@ -31,7 +31,6 @@ public class ListChekOutAdapater extends RecyclerView.Adapter<ListChekOutAdapate
 
     private Context context;
     private List<CartModel> itemCartList;
-    public String Temp_Price,Temp_Quantity;
 
     public ListChekOutAdapater(Context context, List<CartModel> popularList) {
         this.context = context;
@@ -39,9 +38,6 @@ public class ListChekOutAdapater extends RecyclerView.Adapter<ListChekOutAdapate
 
     }
 
-    /* getItemCount() : cho biết số phần tử của dữ liệu
-     onCreateViewHolder : tạo ra đối tượng ViewHolder, trong nó chứa View hiện thị dữ liệu
-     onBindViewHolder : chuyển dữ liệu phần tử vào ViewHolder*/
     @NonNull
     @Override
     public ListChekOutAdapater.ListCartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

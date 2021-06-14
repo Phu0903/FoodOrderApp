@@ -52,8 +52,6 @@ public class HistoryOrderActivity extends AppCompatActivity {
         listHistoryRecyclerView = findViewById(R.id.list_oder_history);
         Back = findViewById(R.id.Back_User);
 
-
-
     }
 
     private void BackUser()
