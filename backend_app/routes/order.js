@@ -15,34 +15,46 @@ orderRouter.post('/new_oder', async (req, res, next) => {
     var orderID = new Date().getTime();
     var createDate = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`;
     var total = post_data.total;
-   // var status = post_data.status;
-    var orderdata = {
-      '_email': email,
-      '_OrderID': orderID,
-      '_createDate': createDate,
-      '_total': total,
-      '_status': "Đang xử lý đơn hàng"
-
+    var address = post_data.address;
+    var phonenumber = post_data.phonenumber
+    if (!req.body) {
+      res.status(401).json({
+        message: 'Giỏ hàng trống'
+      })
     }
-    var dataNewOrder = new order(orderdata);
-    dataNewOrder.save(function (err) {
-      res.status(201).json("thêm vào thành công")
+    else {
+      // var status = post_data.status;
+      var orderdata = {
+        '_email': email,
+        '_OrderID': orderID,
+        '_createDate': createDate,
+        '_total': total,
+        '_status': "Đang giao xử lý",
+        '_address': address,
+        '_phonenumber': phonenumber
+
+      }
+      var dataNewOrder = new order(orderdata);
+      console.log(dataNewOrder)
+      dataNewOrder.save(function (err) {
+        cart.remove({
+          '_email': email,
+        }, function (err) {
+          res.status(201).json({ message: "thêm vào thành công" });
+        }) 
     })
-   
+
     //xóa cart
-    cart.remove({
-      '_email': email,
-    }, function (err) {
-      res.status(201).json({ success: true });
-    })
+  
 
-
-  } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: err.message
-    })
   }
+  } catch (error) {
+
+  res.status(500).json({
+    success: false,
+    message: error.message
+  })
+}
 
 });
 
@@ -58,7 +70,7 @@ orderRouter.get('/getOrderID/:orderID', async (req, res) => {
           message: "OrderID not exist"
         });
       } else {
-       
+
         order.aggregate([
           { "$match": { "_OrderID": orderID } },
           {
@@ -70,11 +82,11 @@ orderRouter.get('/getOrderID/:orderID', async (req, res) => {
 
             }
           }
-        ],function (err,data) {
-          if(err) throw err;
-            res.send(data);
-      });
-    }
+        ], function (err, data) {
+          if (err) throw err;
+          res.send(data);
+        });
+      }
     })
 
 
@@ -82,41 +94,50 @@ orderRouter.get('/getOrderID/:orderID', async (req, res) => {
     res.status(500).json({
       success: false,
       message: err.message
-  });
+    });
   }
 })
 
 //Xem thông tin danh sách order theo người dùng
-orderRouter.get('/list/:email', async (req, res) => {
+orderRouter.get('/listbyemail', async (req, res) => {
   try {
-    order.findOne({ '_email': email }).sort({_createDay:1},function(err,data){
-      res.status(200).json({
-        success:true,
-        data:data
-      })
-    })
-  } catch (err) {
-      res.status(500).json({
-          success: false,
-          message: err.message
-      });
-  }
-});
+    const SortTime = {_createDay:-1};
+    const ListOrder = await order.find({_email:req.query.email}).sort(SortTime);
+    if (ListOrder == null)
+    {
+        res.status(400)
+           .json({
+               success:false,
+               'message':'email is not right'
+           })
+    }
+    else (
+        res.status(200)
+            .json(ListOrder)
+    )
+} catch (error) {
+    res.status(500).json({
+        success: false,
+        'message': error.message
+    });
+}
+})
 
 //Total
 orderRouter.get('/getbyTotal', async (req, res) => {
   try {
     var params_data = req.params;
     var orderID = params_data.orderID;
-    
-    order.find({'_total':1}, function (err, dulieu) {
-      res.status(201).json(dulieu)});
-  
+
+    order.find({ '_total': 1 }, function (err, dulieu) {
+      res.status(201).json(dulieu)
+    });
+
   } catch (err) {
     res.status(500).json({
       success: false,
       message: err.message
-  });
+    });
   }
 })
 

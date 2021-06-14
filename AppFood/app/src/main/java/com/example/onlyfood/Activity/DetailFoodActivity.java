@@ -50,7 +50,6 @@ public class DetailFoodActivity extends AppCompatActivity {
         Adapater1=bundle.getString("ListFood");
         Adapater2=bundle.getString("PopularAdapater");
         email = bundle.getString("username");
-        Log.d("email",email);
 
         //itemRating = findViewById(R.id.rating);
 
@@ -60,7 +59,7 @@ public class DetailFoodActivity extends AppCompatActivity {
 
        // Glide.with(getApplicationContext()).load(imageUrl).into(imageView);
         itemName.setText(name);
-        itemPrice.setText(price);
+        itemPrice.setText("$"+price);
         itemDetail.setText(detail);
         //itemRating.setText(rating);
         //ratingBar.setRating(Float.parseFloat(rating));
@@ -110,7 +109,7 @@ public class DetailFoodActivity extends AppCompatActivity {
             public void onResponse(Call<CartModel> call, Response<CartModel> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(DetailFoodActivity.this,response.body().getMessage(),Toast.LENGTH_LONG).show();
-                    Log.d(response.message(), "onResponse: ");
+
                 }else{
                     Toast.makeText(DetailFoodActivity.this,"failed",Toast.LENGTH_LONG).show();
                 }

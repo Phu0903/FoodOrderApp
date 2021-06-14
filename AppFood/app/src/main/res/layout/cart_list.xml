@@ -15,6 +15,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#FFFFFF"
         android:orientation="horizontal"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
@@ -73,7 +74,7 @@
                     android:textSize="20dp" />
 
                 <TextView
-                    android:id="@+id/amount"
+                    android:id="@+id/quantity_checkout"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -95,10 +96,24 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
 
+                    android:fontFamily="@font/acme"
                     android:gravity="center_vertical"
                     android:text="Price: "
                     android:textAlignment="textEnd"
+                    android:textColor="#000000"
                     android:textSize="22dp" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/acme"
+                    android:gravity="center_vertical|end"
+                    android:padding="1dp"
+                    android:text="$"
+                    android:textColor="#000000"
+                    android:textSize="26dp" />
 
                 <TextView
                     android:id="@+id/cart_totalprice"
@@ -108,9 +123,10 @@
 
                     android:drawablePadding="20px"
 
+                    android:fontFamily="@font/acme"
                     android:gravity="center_vertical"
                     android:text="6000"
-                    android:textColor="#E91E63"
+                    android:textColor="#000000"
                     android:textSize="22dp" />
 
                 <ImageView

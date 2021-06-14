@@ -10,7 +10,7 @@
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
+        android:background="#FAFAFA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -89,18 +89,18 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
-                android:id="@+id/buy"
-                android:layout_width="265dp"
+                android:id="@+id/CheckOut"
+                android:layout_width="250dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:fontFamily="@font/acme"
-                android:text="Buy"
+                android:text="Check Out"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
+                app:backgroundTint="?android:attr/colorFocusedHighlight"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:backgroundTint="?android:attr/colorFocusedHighlight"/>
+                app:layout_constraintStart_toStartOf="parent" />
 
         </LinearLayout>
 

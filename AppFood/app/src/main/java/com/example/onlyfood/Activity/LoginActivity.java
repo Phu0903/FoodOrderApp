@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.onlyfood.R;
 import com.example.onlyfood.model.LoginRegisterModel;
@@ -42,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Login.setEnabled(false);
                 Login(jsonPlaceHolderApi, String.valueOf(username.getText()), String.valueOf(password.getText()));
             }
         });
@@ -86,8 +87,6 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putString("username",username);
-                        bundle.putString("password",password);
-
                         intent.putExtras(bundle);
                         startActivity(intent);
                         finish();

@@ -11,31 +11,18 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.onlyfood.Adapater.CategoryAdapater;
-import com.example.onlyfood.Adapater.PopularAdapater;
 import com.example.onlyfood.R;
-import com.example.onlyfood.model.CartModel;
-import com.example.onlyfood.model.CategoryModel;
-import com.example.onlyfood.model.FoodModel;
 import com.example.onlyfood.model.UserModel;
 import com.example.onlyfood.networking.ApiServices;
 import com.example.onlyfood.networking.RetrofitClient;
-
-import org.w3c.dom.Text;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UserActivity extends Fragment {
     private TextView textViewTerm;
@@ -43,7 +30,7 @@ public class UserActivity extends Fragment {
     RecyclerView popularRecyclerView, categoryRecyclerView; // RecyclerView
     ApiServices apiInterface; //Call ApiServices
     Context context;
-    Button signout;
+    Button signout,pucharse_history;
     String email;
     TextView fullname,usermail,phonenumber,address;
     @Nullable
@@ -51,11 +38,15 @@ public class UserActivity extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View mView = inflater.inflate(R.layout.userr, null);
+
         signout = mView.findViewById(R.id.signout);
         fullname = mView.findViewById(R.id.user_name);
         usermail = mView.findViewById(R.id.user_email);
         phonenumber = mView.findViewById(R.id.user_phone);
         address =mView.findViewById(R.id.user_address);
+        pucharse_history = mView.findViewById(R.id.purchase_history);
+
+
         Intent intent = getActivity().getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
@@ -78,21 +69,25 @@ public class UserActivity extends Fragment {
                 getActivity().finish();
           }
         });
-
+        //click
+        pucharse_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StartHistory();
+            }
+        });
+        //
         context = container.getContext();
         return mView;
 
     }
-
     private void callApiUser(ApiServices jsonPlaceHolderApi)
     {
         Call<UserModel> call = jsonPlaceHolderApi.getInforUser(email);
-
         call.enqueue(new Callback<UserModel>() {
             @Override
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
                 if (!response.isSuccessful()) {
-                    Log.d("null",null);
                     return;
                 }
                 else{
@@ -100,21 +95,22 @@ public class UserActivity extends Fragment {
                     usermail.setText(response.body().get_email());
                     phonenumber.setText(response.body().get_PhoneNumber());
                     address.setText(response.body().get_Address());
-
-
-
                 }
             }
-
             @Override
             public void onFailure(Call<UserModel> call, Throwable t) {
 
             }
         });
     }
-
-
-
+    private void StartHistory()
+    {
+        Intent intent = new Intent(getActivity(), HistoryOrderActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("email_to_history",email);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 }
 
 

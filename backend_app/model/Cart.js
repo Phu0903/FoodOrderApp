@@ -4,8 +4,6 @@ var cart = new mongoose.Schema({
     _email:
      {
          type: String,
-         required:true,
-         unique:true,
          ref: 'users'
      },
      _ProductID:

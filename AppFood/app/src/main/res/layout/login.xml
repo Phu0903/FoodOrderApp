@@ -82,9 +82,9 @@
 
         <CheckBox
             android:id="@+id/checkbox"
-            android:layout_width="wrap_content"
+            android:layout_width="154dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="200dp"
+            android:layout_margin="20dp"
             android:text="Remember me"
             android:textColor="#FFFFFF" />
 

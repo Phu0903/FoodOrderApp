@@ -7,9 +7,10 @@
        android:icon="@drawable/ic_baseline_favorite_24"
        android:title="Favorites"
        ></item>
-   <item android:id="@+id/nav_cart"
+   <item
+       android:id="@+id/nav_cart"
        android:icon="@drawable/ic_baseline_shopping_cart_24"
-       android:title="AddToCart"> </item>
+       android:title="Cart"></item>
    <item android:id="@+id/nav_person"
        android:icon="@drawable/ic_baseline_person_24"
        android:title="User"></item>

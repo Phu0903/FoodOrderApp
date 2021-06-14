@@ -11,11 +11,19 @@ var order = new mongoose.Schema({
     _createDay:
     {
         type: Date,
-		default: Date.now
+	    	default: Date.now
     } ,
     _total: {
-        type:Number,
+        type:String,
         require:true,
+    },
+    _address:{
+      type:String,
+      require:true
+    },
+    _phonenumber:{
+         type:String,
+         require:true,
     },
     _status: {
         type:String,

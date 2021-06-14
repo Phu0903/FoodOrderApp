@@ -39,7 +39,6 @@ public class RegisterActivity extends AppCompatActivity {
         add_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("email",String.valueOf(signup_email.getText()));
                 register(jsonPlaceHolderApi,
                         String.valueOf(signup_email.getText()),
                         String.valueOf(signup_password.getText()),

@@ -27,34 +27,30 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class ListCartAdapater extends RecyclerView.Adapter<ListCartAdapater.ListCartViewHolder>{
+public class ListChekOutAdapater extends RecyclerView.Adapter<ListChekOutAdapater.ListCartViewHolder>{
 
     private Context context;
     private List<CartModel> itemCartList;
     public String Temp_Price,Temp_Quantity;
 
-    public ListCartAdapater(Context context, List<CartModel> popularList) {
+    public ListChekOutAdapater(Context context, List<CartModel> popularList) {
         this.context = context;
         this.itemCartList = popularList;
 
     }
-
 
     /* getItemCount() : cho biết số phần tử của dữ liệu
      onCreateViewHolder : tạo ra đối tượng ViewHolder, trong nó chứa View hiện thị dữ liệu
      onBindViewHolder : chuyển dữ liệu phần tử vào ViewHolder*/
     @NonNull
     @Override
-    public ListCartAdapater.ListCartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.cart_list, parent, false);
-
-        return new ListCartAdapater.ListCartViewHolder(view);
+    public ListChekOutAdapater.ListCartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.check_out_items, parent, false);
+        return new ListChekOutAdapater.ListCartViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListCartAdapater.ListCartViewHolder holder, int position) {
-        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
-        ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
+    public void onBindViewHolder(@NonNull ListChekOutAdapater.ListCartViewHolder holder, int position) {
         CartModel hero = itemCartList.get(position);
         Glide.with(context).load(context.getResources().
                 getIdentifier(itemCartList.get(position).
@@ -63,27 +59,13 @@ public class ListCartAdapater extends RecyclerView.Adapter<ListCartAdapater.List
         holder.Name.setText(hero.get_NameProduct());
         holder.Price.setText(String.valueOf(hero.get_Price()));
         holder.quantity.setText(String.valueOf(hero.get_quantity()));
-        Temp_Price = hero.get_Price();
-        Temp_Quantity = hero.get_quantity();
 
 
-        //Log.d("Price",Temp);
-        holder.remove_item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                CallListFoodCart(jsonPlaceHolderApi,hero.get_ProductID(),hero.get_email());
-                itemCartList.remove(position);
-                notifyDataSetChanged();//thay đổi Giao diện
-                 ///
-                Integer Total = Integer.valueOf(Temp_Price)*Integer.valueOf(Temp_Quantity);
-                Intent intent = new Intent("custom-message");
-                Log.d("Price",Total.toString());
-                intent.putExtra("Price",Total.toString());
-                LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+        Intent intent = new Intent("message");
+        intent.putExtra("quantity",hero.get_quantity());
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 
-            }
-        });
     }
 
 
@@ -96,43 +78,13 @@ public class ListCartAdapater extends RecyclerView.Adapter<ListCartAdapater.List
     public  static class ListCartViewHolder extends RecyclerView.ViewHolder{
         ImageView Image;
         TextView Name,Price,quantity;
-        ImageView remove_item;
-
         public ListCartViewHolder(@NonNull View itemView) {
             super(itemView);
             Price = itemView.findViewById(R.id.cart_totalprice);
             Name = itemView.findViewById(R.id.cart_name);
             Image = itemView.findViewById(R.id.cart_image);
             quantity = itemView.findViewById(R.id.quantity_checkout);
-            remove_item =itemView.findViewById(R.id.delete_item);
-
-
 
         }
     }
-
-    public void CallListFoodCart(ApiServices jsonPlaceHolderApi, String ProductID,String email)
-    {
-
-        Call<CartModel> call = jsonPlaceHolderApi.deleteItem(ProductID,email);
-
-        call.enqueue(new Callback<CartModel>() {
-            @Override
-            public void onResponse(Call<CartModel> call, Response<CartModel> response) {
-                if (response.isSuccessful()) {
-
-                    Log.d("Xóa",response.body().toString());
-
-
-                }
-
-
-            }
-            @Override
-            public void onFailure(Call<CartModel> call, Throwable t) {
-                Toast.makeText(context,"Failed"+t.getLocalizedMessage(),Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
 }

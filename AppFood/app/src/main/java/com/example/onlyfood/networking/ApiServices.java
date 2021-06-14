@@ -1,8 +1,11 @@
 package com.example.onlyfood.networking;
+import androidx.core.content.pm.PermissionInfoCompat;
+
 import com.example.onlyfood.model.CartModel;
 import com.example.onlyfood.model.CategoryModel;
 import com.example.onlyfood.model.FoodModel;
 import com.example.onlyfood.model.LoginRegisterModel;
+import com.example.onlyfood.model.OrderModel;
 import com.example.onlyfood.model.UserModel;
 
 import java.util.List;
@@ -40,8 +43,14 @@ public interface ApiServices {
     @DELETE("/cartRouter/delete")
     Call<CartModel> deleteItem(@Query("ProductID") String productid, @Query("email") String email);
 
+    @POST("/orderRouter/new_oder")
+    Call<OrderModel> postOrder(@Body OrderModel orderModel);
+
+    @GET("/orderRouter/listbyemail")
+    Call<List<OrderModel>> getOder(@Query("email") String email);
+
+    @GET("/productRouter/getFood")
+    Call<List<FoodModel>> getFullProducts();
+
 
 }
-//get
-//parmas
-//post

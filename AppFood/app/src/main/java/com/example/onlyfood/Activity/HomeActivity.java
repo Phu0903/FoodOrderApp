@@ -1,9 +1,7 @@
 package com.example.onlyfood.Activity;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +11,6 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,6 +36,7 @@ public class HomeActivity extends Fragment {
     RecyclerView popularRecyclerView, categoryRecyclerView; // RecyclerView
     ApiServices apiInterface; //Call ApiServices
     Context context;
+    TextView search;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -68,10 +66,25 @@ public class HomeActivity extends Fragment {
         textViewTerm =mView.findViewById(R.id.textView2);
         popularRecyclerView = mView.findViewById(R.id.cart_recycler);
         categoryRecyclerView = mView.findViewById(R.id.category_recycler); //Tim category recycler view
+        search = mView.findViewById(R.id.search);
+        ClickSearch();
         return mView;
 
     }
+    private void ClickSearch()
+    {
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("search_email",email);
+                intent.putExtras(bundle);
+                startActivity(intent);
 
+            }
+        });
+    }
     private void callApiUser(ApiServices jsonPlaceHolderApi,String email)
     {
         Call<UserModel> call = jsonPlaceHolderApi.getInforUser(email);
