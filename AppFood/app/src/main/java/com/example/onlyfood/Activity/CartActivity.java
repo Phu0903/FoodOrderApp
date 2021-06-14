@@ -111,9 +111,7 @@ public class CartActivity extends Fragment {
     //Call list data
     private void CartList(ApiServices jsonPlaceHolderApi,String email)
     {
-
         Call<List<CartModel>> call = jsonPlaceHolderApi.getCart(email);
-
         call.enqueue(new Callback<List<CartModel>>() {
             @Override
             public void onResponse(Call<List<CartModel>> call, Response<List<CartModel>> response) {

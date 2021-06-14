@@ -223,8 +223,4 @@ public class CheckOutActivity extends AppCompatActivity {
         });
     }
 
-
-
-
-
 }

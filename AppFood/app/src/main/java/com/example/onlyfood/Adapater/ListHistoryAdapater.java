@@ -1,7 +1,9 @@
 package com.example.onlyfood.Adapater;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,18 +37,14 @@ public class ListHistoryAdapater extends RecyclerView.Adapter<ListHistoryAdapate
 
     private Context context;
     private List<OrderModel> itemCartList;
-    public String Temp_Price,Temp_Quantity;
-   private ArrayList<OrderListModel> orderListModels;
-   private Integer total = 0;
+    private ArrayList<OrderListModel> orderListModels;
+    private Integer total = 0;
+    String quantity;
     public ListHistoryAdapater(Context context, List<OrderModel> popularList) {
         this.context = context;
         this.itemCartList = popularList;
 
     }
-
-    /* getItemCount() : cho biết số phần tử của dữ liệu
-     onCreateViewHolder : tạo ra đối tượng ViewHolder, trong nó chứa View hiện thị dữ liệu
-     onBindViewHolder : chuyển dữ liệu phần tử vào ViewHolder*/
     @NonNull
     @Override
     public ListHistoryAdapater.ListCartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -57,20 +55,21 @@ public class ListHistoryAdapater extends RecyclerView.Adapter<ListHistoryAdapate
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull ListHistoryAdapater.ListCartViewHolder holder, int position) {
+
         OrderModel hero = itemCartList.get(position);
 
-        holder.TotalHistory.setText("$ "+String.valueOf(hero.get_total()));
+        holder.TotalHistory.setText("$ "+hero.get_total());
         //
         orderListModels = new ArrayList<>();
         for (OrderListModel orderList : hero.get_product())
         {
             orderListModels.add(orderList);
+
         }
-        for (OrderListModel list : orderListModels)
-        {
-            total = Integer.valueOf(list.get_Quantity() )+ total;
-        }
-        holder.NumberItems.setText(total.toString());
+
+
+
+
         //Format date
         Date date1 = hero.get_createDay();
         SimpleDateFormat localDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -96,12 +95,7 @@ public class ListHistoryAdapater extends RecyclerView.Adapter<ListHistoryAdapate
         {
             holder.CrateDate.setText(String.valueOf(s1[0]));
         }
-        /*PhonNumber = bundle.getString("PhoneNumber");
-        Address = bundle.getString("Address");
-        ID = bundle.getString("ID");
-        Quantity = bundle.getString("Quantity");
-        Total = bundle.getString("Total");
-        orderListModels = (ArrayList<OrderListModel>) bundle.getSerializable("Product");*/
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,9 +104,8 @@ public class ListHistoryAdapater extends RecyclerView.Adapter<ListHistoryAdapate
                 bundle.putString("PhoneNumber",hero.get_phonenumber());
                 bundle.putString("Address",hero.get_address());
                 bundle.putString("ID",hero.get_OrderID());
-                bundle.putString("Quantity",total.toString());
                 bundle.putString("Total",hero.get_total());
-                bundle.putSerializable("Product",(Serializable)orderListModels);
+                bundle.putSerializable("Product",(Serializable) hero.get_product());
                 i.putExtras(bundle);
                 context.startActivity(i);
 
@@ -133,7 +126,7 @@ public class ListHistoryAdapater extends RecyclerView.Adapter<ListHistoryAdapate
             super(itemView);
             TotalHistory =itemView.findViewById(R.id.TotalHistory);
             CrateDate = itemView.findViewById(R.id.CreateDay);
-            NumberItems = itemView.findViewById(R.id.number_items);
+
 
         }
     }

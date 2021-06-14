@@ -28,15 +28,14 @@ public class HistoryOrderActivity extends AppCompatActivity {
     String email;
     RecyclerView listHistoryRecyclerView;
     ListHistoryAdapater ListHistoryAdapater;
+    Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+    ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history_oder);
         //Data from user activity
         IntentFrom();
-        //
-        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
-        ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
         //
         init();
         //Call Api history purchase
