@@ -1,18 +1,20 @@
 var mongoose = require('mongoose');
 var orderList = new mongoose.Schema({
-    _OrderID: {
+    _NameProduct: {
       type:String,
-      require:true,
+
     },
-    _ProductID:{
-        type:String,
-        require:true,
+    _Image:{
+     type:String
     },
-    _quantity:
+    _Quantity:
     {
         type: String,
-		default: Date.now
     } ,
+    _Price:{
+      type:String,
+     },   
+     
 }, { collection: 'orderlist' });
 
 module.exports = mongoose.model('orderlist', orderList)

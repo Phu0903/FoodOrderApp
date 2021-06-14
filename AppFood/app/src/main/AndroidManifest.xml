@@ -33,6 +33,7 @@
         <activity android:name=".Activity.CategoryDetailActivity" />
         <activity android:name=".Activity.DetailFoodActivity" />
         <activity android:name=".Activity.CheckOutActivity" />
+        <activity android:name=".Activity.HistoryDetailActivity"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

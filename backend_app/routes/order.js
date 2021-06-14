@@ -16,7 +16,8 @@ orderRouter.post('/new_oder', async (req, res, next) => {
     var createDate = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`;
     var total = post_data.total;
     var address = post_data.address;
-    var phonenumber = post_data.phonenumber
+    var phonenumber = post_data.phonenumber;
+    var product = post_data.product
     if (!req.body) {
       res.status(401).json({
         message: 'Giỏ hàng trống'
@@ -31,30 +32,38 @@ orderRouter.post('/new_oder', async (req, res, next) => {
         '_total': total,
         '_status': "Đang giao xử lý",
         '_address': address,
-        '_phonenumber': phonenumber
+        '_phonenumber': phonenumber,
+        '_product':product,
 
       }
-      var dataNewOrder = new order(orderdata);
-      console.log(dataNewOrder)
+      var dataNewOrder = await new order(orderdata);
       dataNewOrder.save(function (err) {
-        cart.remove({
-          '_email': email,
-        }, function (err) {
-          res.status(201).json({ message: "thêm vào thành công" });
-        }) 
-    })
+        if (err) {
+          res.status(401).json({
+            message: err.message
+          })
+        }
+        else {
+          //xóa cart
+          cart.remove({
+            '_email': email,
+          }, function (err) {
+            res.status(201).json({ message: "thêm vào thành công" });
+          })
+        }
+      })
 
-    //xóa cart
-  
 
-  }
+
+
+    }
   } catch (error) {
-
-  res.status(500).json({
-    success: false,
-    message: error.message
-  })
-}
+    console.log(error)
+    res.status(500).json({
+      success: false,
+      message: error.message
+    })
+  }
 
 });
 
@@ -101,26 +110,25 @@ orderRouter.get('/getOrderID/:orderID', async (req, res) => {
 //Xem thông tin danh sách order theo người dùng
 orderRouter.get('/listbyemail', async (req, res) => {
   try {
-    const SortTime = {_createDay:-1};
-    const ListOrder = await order.find({_email:req.query.email}).sort(SortTime);
-    if (ListOrder == null)
-    {
-        res.status(400)
-           .json({
-               success:false,
-               'message':'email is not right'
-           })
+    const SortTime = { _createDay: -1 };
+    const ListOrder = await order.find({ _email: req.query.email }).sort(SortTime);
+    if (ListOrder == null) {
+      res.status(400)
+        .json({
+          success: false,
+          'message': 'email is not right'
+        })
     }
     else (
-        res.status(200)
-            .json(ListOrder)
+      res.status(200)
+        .json(ListOrder)
     )
-} catch (error) {
+  } catch (error) {
     res.status(500).json({
-        success: false,
-        'message': error.message
+      success: false,
+      'message': error.message
     });
-}
+  }
 })
 
 //Total

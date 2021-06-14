@@ -1,6 +1,7 @@
 package com.example.onlyfood.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class OrderModel {
     private String email;
@@ -8,6 +9,15 @@ public class OrderModel {
     private String address;
     private String phonenumber;
     private String message;
+    private List<OrderListModel> product;
+
+    public List<OrderListModel> getProduct() {
+        return product;
+    }
+
+    public void setProduct(List<OrderListModel> product) {
+        this.product = product;
+    }
 
     public String getEmail() {
         return email;
@@ -41,11 +51,12 @@ public class OrderModel {
         this.phonenumber = phonenumber;
     }
 
-    public OrderModel(String email, String total, String address, String phonenumber) {
+    public OrderModel(String email, String total, String address, String phonenumber,List<OrderListModel> product) {
         this.email = email;
         this.total = total;
         this.address = address;
         this.phonenumber = phonenumber;
+        this.product = product;
     }
 
     private String _email;
@@ -55,6 +66,16 @@ public class OrderModel {
     private  String _address;
     private  String _phonenumber;
     private Date _createDay;
+    private List<OrderListModel> _product;
+    public List<OrderListModel> get_product() {
+        return _product;
+    }
+
+    public void set_product(List<OrderListModel> _product) {
+        this._product = _product;
+    }
+
+
 
     public String getMessage() {
         return message;

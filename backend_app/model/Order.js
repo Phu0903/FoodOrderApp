@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+const OrderList = require('./OrderList').schema;
+const Schema = mongoose.Schema;
 var order = new mongoose.Schema({
     _OrderID: {
       type:String,
@@ -29,6 +31,9 @@ var order = new mongoose.Schema({
         type:String,
         require:true,
     },
+    _product:{
+        type:[OrderList]
+    }
 }, { collection: 'order' });
 
 module.exports = mongoose.model('order', order)

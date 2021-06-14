@@ -9,12 +9,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
-import com.example.onlyfood.Adapater.ListCartAdapater;
 import com.example.onlyfood.Adapater.ListHistoryAdapater;
 import com.example.onlyfood.R;
-import com.example.onlyfood.model.CartModel;
 import com.example.onlyfood.model.OrderModel;
 import com.example.onlyfood.networking.ApiServices;
 import com.example.onlyfood.networking.RetrofitClient;
@@ -46,9 +43,6 @@ public class HistoryOrderActivity extends AppCompatActivity {
         CallHistory(jsonPlaceHolderApi);
         //click back home
         BackUser();
-
-
-
 
 
     }

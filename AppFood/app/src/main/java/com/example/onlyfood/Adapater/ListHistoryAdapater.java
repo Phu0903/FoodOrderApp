@@ -3,6 +3,7 @@ package com.example.onlyfood.Adapater;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +17,15 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.onlyfood.Activity.DetailFoodActivity;
 import com.example.onlyfood.R;
 import com.example.onlyfood.model.CartModel;
+import com.example.onlyfood.model.OrderListModel;
 import com.example.onlyfood.model.OrderModel;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +34,8 @@ public class ListHistoryAdapater extends RecyclerView.Adapter<ListHistoryAdapate
     private Context context;
     private List<OrderModel> itemCartList;
     public String Temp_Price,Temp_Quantity;
-
+   private ArrayList<OrderListModel> orderListModels;
+   private Integer total = 0;
     public ListHistoryAdapater(Context context, List<OrderModel> popularList) {
         this.context = context;
         this.itemCartList = popularList;
@@ -53,7 +58,18 @@ public class ListHistoryAdapater extends RecyclerView.Adapter<ListHistoryAdapate
         OrderModel hero = itemCartList.get(position);
 
         holder.TotalHistory.setText("$ "+String.valueOf(hero.get_total()));
-       //Format date
+        //
+        orderListModels = new ArrayList<>();
+        for (OrderListModel orderList : hero.get_product())
+        {
+            orderListModels.add(orderList);
+        }
+        for (OrderListModel list : orderListModels)
+        {
+            total = Integer.valueOf(list.get_Quantity() )+ total;
+        }
+        holder.NumberItems.setText(total.toString());
+        //Format date
         Date date1 = hero.get_createDay();
         SimpleDateFormat localDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         String sTime = localDateFormat.format(date1);
@@ -78,6 +94,27 @@ public class ListHistoryAdapater extends RecyclerView.Adapter<ListHistoryAdapate
         {
             holder.CrateDate.setText(String.valueOf(s1[0]));
         }
+        /*PhonNumber = bundle.getString("PhoneNumber");
+        Address = bundle.getString("Address");
+        ID = bundle.getString("ID");
+        Quantity = bundle.getString("Quantity");
+        Total = bundle.getString("Total");
+        orderListModels = (ArrayList<OrderListModel>) bundle.getSerializable("Product");*/
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, DetailFoodActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("PhoneNumber",hero.get_phonenumber());
+                bundle.putString("Address",hero.get_address());
+                bundle.putString("ID",hero.get_OrderID());
+
+
+                i.putExtras(bundle);
+                context.startActivity(i);
+
+            }
+        });
 
     }
 
@@ -88,14 +125,14 @@ public class ListHistoryAdapater extends RecyclerView.Adapter<ListHistoryAdapate
 
     public  static class ListCartViewHolder extends RecyclerView.ViewHolder{
 
-        TextView TotalHistory,CrateDate;
+        TextView TotalHistory,CrateDate,NumberItems;
         public ListCartViewHolder(@NonNull View itemView) {
             super(itemView);
             TotalHistory =itemView.findViewById(R.id.TotalHistory);
             CrateDate = itemView.findViewById(R.id.CreateDay);
+            NumberItems = itemView.findViewById(R.id.number_items);
 
         }
     }
 
 }
-
