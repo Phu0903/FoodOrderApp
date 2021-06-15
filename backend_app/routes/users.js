@@ -16,7 +16,6 @@ userRouter.post('/dangky', async (req, res, next) => {
     console.log(name);
     if (!email || !req.body.password) {
       return res
-        .status(400)
         .json({ success: false, "message": "Username or password not empty" })
     }
     else if (!name) {
@@ -64,19 +63,18 @@ userRouter.post('/dangnhap', async (req, res, next) => {
     var email = post_data.email;
     User.findOne({ '_email': email }).count(function (err, number) {
       if (number == 0) {
-        res.status(400).json({"message":'Email not exists'});
+     
+        res.json({"message":'Wrong email or password'});
       }
       else {
         User.findOne({ '_email': email }, function (error, data) {
 
           if (!bcryptjs.compareSync(req.body.password, data._password)) {
-            res.status(400).json({"message":'Wrong email or password'});
+            res.json({"message":'Wrong email or password'});
           }
           else {
             res.status(201).json({
-              
               "message":'Login success'
-            
             });
           }
         })

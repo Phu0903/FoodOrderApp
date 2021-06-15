@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import com.example.onlyfood.R;
 import com.example.onlyfood.model.LoginRegisterModel;
 import com.example.onlyfood.networking.ApiServices;
 import com.example.onlyfood.networking.RetrofitClient;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,15 +29,24 @@ public class RegisterActivity extends AppCompatActivity {
     EditText signup_email;
     TextView login;
     Button add_account;
+    Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+    ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
-        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
-        ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
-        init();
 
+        init();
+        ClickLogin();
+        ClickBtnRegister();
+
+
+
+
+    }
+    public void ClickBtnRegister()
+    {
         add_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +58,9 @@ public class RegisterActivity extends AppCompatActivity {
                         String.valueOf(signup_address.getText()));
             }
         });
-
+    }
+    public void ClickLogin()
+    {
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,8 +70,6 @@ public class RegisterActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
     //Ánh xạ
     public void init()
@@ -88,8 +99,14 @@ public class RegisterActivity extends AppCompatActivity {
                         finish();
 
                     }
+                    else {
+                        CharSequence notification =  new Gson().toJson(response.body().getMessage());
+                        Toast.makeText(RegisterActivity.this,notification,Toast.LENGTH_LONG).show();
+                    }
                 }else{
-                    Log.d("Sai: ",response.errorBody().toString());
+                    CharSequence notification =  new Gson().toJson(response.code());
+                    Toast.makeText(RegisterActivity.this,notification,Toast.LENGTH_LONG).show();
+
                 }
             }
 

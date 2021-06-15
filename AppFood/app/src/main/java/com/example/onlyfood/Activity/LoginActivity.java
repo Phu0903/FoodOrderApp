@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,38 +32,23 @@ public class LoginActivity extends AppCompatActivity {
     EditText password;
     Button Login;
     TextView Register;
-
+    Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+    ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-
-        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
-        ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
-        View();
-        Login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Login.setEnabled(false);
-                Login(jsonPlaceHolderApi, String.valueOf(username.getText()), String.valueOf(password.getText()));
-            }
-        });
+        Init();
+        ClickRegister();
+        ClickLogin();
 
         //register
 
-        Register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-                finish();
 
-            }
-        });
     }
 
     //Ánh xạ
-    public void View()
+    public void Init()
     {
         Login = findViewById(R.id.signinBtn);
         Register= findViewById(R.id.registerlayout);
@@ -70,6 +56,31 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.signin_password);
 
 
+    };
+    private void ClickLogin()
+    {
+        Login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Just Only Click
+
+                Login(jsonPlaceHolderApi, String.valueOf(username.getText()), String.valueOf(password.getText()));
+            }
+        });
+    }
+    private void ClickRegister()
+    {
+        Register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Just Only Click
+                Login.setEnabled(false);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+                finish();
+
+            }
+        });
     }
     private void Login(ApiServices jsonPlaceHolderApi, String username, String password){
 
@@ -92,7 +103,13 @@ public class LoginActivity extends AppCompatActivity {
                         finish();
 
                     }
-                }else{
+                    else{
+                        CharSequence notification =  new Gson().toJson(response.body().getMessage());
+                        Toast.makeText(LoginActivity.this,notification,Toast.LENGTH_LONG).show();
+                    }
+                }else {
+                    CharSequence notification =  new Gson().toJson(response.code());
+                    Toast.makeText(LoginActivity.this,notification,Toast.LENGTH_LONG).show();
                     Log.d("Sai: " , new Gson().toJson(response.body()) );
                 }
             }

@@ -37,19 +37,38 @@ public class HomeActivity extends Fragment {
     ApiServices apiInterface; //Call ApiServices
     Context context;
     TextView search;
+    //Using retrofit
+    Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+    ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View mView = inflater.inflate(R.layout.home_layout, null);
-        //Using retrofit
-        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
-        ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
+        fullname = mView.findViewById(R.id.fullname);
+        textViewTerm =mView.findViewById(R.id.textView2);
+        popularRecyclerView = mView.findViewById(R.id.cart_recycler);
+        categoryRecyclerView = mView.findViewById(R.id.category_recycler); //Tim category recycler view
+        search = mView.findViewById(R.id.search);
         //Call function
+        context = container.getContext();
+        DataFromAnotherActivity();
+        CallApi();
+        //Find Id Text
+
+        ClickSearch();
+        return mView;
+
+    }
+    private void CallApi()
+    {
         CallListCategory(jsonPlaceHolderApi);
         CallListFoodPopular(jsonPlaceHolderApi);
+        CallApiUser(jsonPlaceHolderApi,email);
+    }
+    private void DataFromAnotherActivity()
+    {
 
-        context = container.getContext();
         Intent intent = getActivity().getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
@@ -58,18 +77,6 @@ public class HomeActivity extends Fragment {
         else {
             Log.d("null","null");
         }
-        callApiUser(jsonPlaceHolderApi,email);
-
-
-        //Find Id Text
-        fullname = mView.findViewById(R.id.fullname);
-        textViewTerm =mView.findViewById(R.id.textView2);
-        popularRecyclerView = mView.findViewById(R.id.cart_recycler);
-        categoryRecyclerView = mView.findViewById(R.id.category_recycler); //Tim category recycler view
-        search = mView.findViewById(R.id.search);
-        ClickSearch();
-        return mView;
-
     }
     private void ClickSearch()
     {
@@ -85,7 +92,7 @@ public class HomeActivity extends Fragment {
             }
         });
     }
-    private void callApiUser(ApiServices jsonPlaceHolderApi,String email)
+    private void CallApiUser(ApiServices jsonPlaceHolderApi,String email)
     {
         Call<UserModel> call = jsonPlaceHolderApi.getInforUser(email);
 

@@ -44,6 +44,9 @@ public class CartActivity extends Fragment {
     TextView cart_price,quantity;
     Button Checkout;
     ListCartAdapater ListCart;
+    //Using retrofit call api
+    Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+    ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,9 +59,6 @@ public class CartActivity extends Fragment {
         cart_price = mView.findViewById(R.id.cart_totalprice);
         quantity = mView.findViewById(R.id.quantity_checkout);
         Checkout = mView.findViewById(R.id.CheckOut);
-        //Using retrofit call api
-        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
-        ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
         //context
         context = container.getContext();
         //Traffic email
@@ -139,7 +139,6 @@ public class CartActivity extends Fragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             String qty = intent.getStringExtra("Price");
-            Integer total_temp;
             total =  total - Integer.valueOf(qty);
             cart_price.setText("$ "+total.toString());
         }

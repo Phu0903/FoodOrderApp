@@ -29,17 +29,52 @@ public class DetailFoodActivity extends AppCompatActivity {
     RatingBar ratingBar;
     Button BackHome,AddtoCart,Add,Remove;
     String name, price, rating, imageUrl,ID_Product,detail,Adapater1,Adapater2,email;
+    Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+    ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
     int count = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
-        ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
-
         setContentView(R.layout.detail_food);
-
-
         init();
+        ItentFromAnotherActivity();
+        setLayout();
+        ClicKBackHome();
+        ClickAddToCart();
+
+
+    }
+    private void ClickAddToCart()
+    {
+        AddtoCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createPost(jsonPlaceHolderApi);
+            }
+        });
+    }
+    private void ClicKBackHome()
+    {
+        BackHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+
+        });
+    }
+    private  void setLayout()
+    {
+        Glide.with(getApplicationContext())
+                .load(getResources()
+                        .getIdentifier(imageUrl, "drawable", this.getPackageName())).into(imageView);
+        itemName.setText(name);
+        itemPrice.setText("$"+price);
+        itemDetail.setText(detail);
+    }
+    private void ItentFromAnotherActivity()
+    {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         ID_Product = bundle.getString("ID_Product");
@@ -50,38 +85,6 @@ public class DetailFoodActivity extends AppCompatActivity {
         Adapater1=bundle.getString("ListFood");
         Adapater2=bundle.getString("PopularAdapater");
         email = bundle.getString("username");
-
-        //itemRating = findViewById(R.id.rating);
-
-        Glide.with(getApplicationContext())
-                .load(getResources()
-                        .getIdentifier(imageUrl, "drawable", this.getPackageName())).into(imageView);
-
-       // Glide.with(getApplicationContext()).load(imageUrl).into(imageView);
-        itemName.setText(name);
-        itemPrice.setText("$"+price);
-        itemDetail.setText(detail);
-        //itemRating.setText(rating);
-        //ratingBar.setRating(Float.parseFloat(rating));
-
-
-
-        BackHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    finish();
-
-            }
-
-        });
-
-        AddtoCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createPost(jsonPlaceHolderApi);
-            }
-        });
-
     }
     public void countIN(View view)
     {

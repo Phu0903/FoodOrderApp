@@ -1,13 +1,6 @@
 package com.example.onlyfood.model;
 
 public class LoginRegisterModel {
-
-    /* '_email': email,
-            '_password': hashPassword,
-            '_name': name,
-            '_InfoUser': InfoUser,
-            '_PhoneNumber': phonenumber,
-            '_Address': address*/
     private String email;
     private String password;
     private String name;

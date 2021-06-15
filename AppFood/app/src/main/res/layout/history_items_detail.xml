@@ -9,9 +9,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -52,228 +52,239 @@
             android:layout_height="2dp"
             android:background="?android:attr/listDivider" />
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:paddingTop="10dp">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="126dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp "
-                android:layout_marginLeft="16dp "
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:text="Name"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/Name_History"
-                android:layout_width="183dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:gravity="end"
-                android:text="1623652165451"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
 
-        </LinearLayout>
+                    <TextView
+                        android:layout_width="126dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:text="Name"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:paddingTop="10dp">
+                    <TextView
+                        android:id="@+id/Name_History"
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:gravity="end"
+                        android:text="1623652165451"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp "
-                android:layout_marginLeft="16dp "
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:text="Phone Number"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/Phone_History"
-                android:layout_width="183dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:gravity="end"
-                android:text="1623652165451"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
 
-        </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:text="Phone Number"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:paddingTop="10dp">
+                    <TextView
+                        android:id="@+id/Phone_History"
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:gravity="end"
+                        android:text="1623652165451"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
 
-            <TextView
-                android:layout_width="121dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp "
-                android:layout_marginLeft="16dp "
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:text="Address"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/Address_History"
-                android:layout_width="183dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:gravity="end"
-                android:text="1623652165451"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
 
-        </LinearLayout>
+                    <TextView
+                        android:layout_width="121dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:text="Address"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="10dp">
+                    <TextView
+                        android:id="@+id/Address_History"
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:gravity="end"
+                        android:text="1623652165451"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
 
-            <TextView
-                android:layout_width="183dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp "
-                android:layout_marginLeft="16dp "
-                android:fontFamily="@font/acme"
-                android:text="ID Order"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/ID_Order"
-                android:layout_width="183dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:gravity="end"
-                android:text="1623652165451"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
 
-        </LinearLayout>
+                    <TextView
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:fontFamily="@font/acme"
+                        android:text="ID Order"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="10dp">
+                    <TextView
+                        android:id="@+id/ID_Order"
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:gravity="end"
+                        android:text="1623652165451"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
 
-            <TextView
-                android:id="@+id/tax"
-                android:layout_width="183dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp "
-                android:layout_marginLeft="16dp "
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:text="Create Day"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/Create_Day"
-                android:layout_width="183dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:gravity="end"
-                android:text="14/06/2021"
-                android:textColor="#000000"
-                android:textSize="20dp" />
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
 
-        <View
-            android:id="@+id/divider4"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_weight="1"
-            android:background="?android:attr/listDivider" />
+                    <TextView
+                        android:id="@+id/tax"
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:text="Create Day"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
 
-        <TextView
-            android:id="@+id/Quantity_History"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp "
-            android:layout_marginLeft="16dp "
-            android:fontFamily="@font/acme"
-            android:text="3 items"
-            android:textColor="#000000"
-            android:textSize="20dp" />
+                    <TextView
+                        android:id="@+id/Create_Day"
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:gravity="end"
+                        android:text="14/06/2021"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
+                </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/List_Products_History"
-            android:layout_width="match_parent"
-            android:layout_height="251dp" />
+                <View
+                    android:id="@+id/divider4"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_weight="1"
+                    android:background="?android:attr/listDivider" />
 
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="?android:attr/listDivider" />
+                <TextView
+                    android:id="@+id/Quantity_History"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:fontFamily="@font/acme"
+                    android:text="3 items"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
 
-        <LinearLayout
-            android:id="@+id/Total"
-            android:layout_width="match_parent"
-            android:layout_height="94dp"
-            android:orientation="horizontal"
-            android:paddingTop="20dp">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/List_Products_History"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-            <TextView
-                android:layout_width="183dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp "
-                android:layout_marginLeft="16dp "
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:text="Total"
-                android:textColor="#000000"
-                android:textSize="26dp" />
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="?android:attr/listDivider" />
 
-            <TextView
-                android:id="@+id/Total_History"
-                android:layout_width="183dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:gravity="end"
-                android:text="$200"
-                android:textColor="#FF0101"
-                android:textSize="26dp" />
+                <LinearLayout
+                    android:id="@+id/Total"
+                    android:layout_width="match_parent"
+                    android:layout_height="94dp"
+                    android:orientation="horizontal"
+                    android:paddingTop="20dp">
 
-        </LinearLayout>
+                    <TextView
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:text="Total"
+                        android:textColor="#000000"
+                        android:textSize="26dp" />
+
+                    <TextView
+                        android:id="@+id/Total_History"
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:gravity="end"
+                        android:text="$200"
+                        android:textColor="#FF0101"
+                        android:textSize="26dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

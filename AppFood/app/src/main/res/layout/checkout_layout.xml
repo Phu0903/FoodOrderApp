@@ -53,262 +53,273 @@
             android:layout_height="2dp"
             android:background="?android:attr/listDivider" />
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:paddingTop="10dp">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="126dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp "
-                android:layout_marginLeft="16dp "
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:text="Name"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/name_checkout"
-                android:layout_width="183dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:gravity="end"
-                android:text="Nguyễn Duy Phú"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="10dp">
 
-            <ImageView
-                android:id="@+id/change_namecheckout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:tint="#000000"
-                app:srcCompat="@drawable/ic_baseline_edit_24" />
+                    <TextView
+                        android:layout_width="126dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:text="Name"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
 
-        </LinearLayout>
+                    <TextView
+                        android:id="@+id/name_checkout"
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:gravity="end"
+                        android:text="Nguyễn Duy Phú"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:paddingTop="10dp">
+                    <ImageView
+                        android:id="@+id/change_namecheckout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:tint="#000000"
+                        app:srcCompat="@drawable/ic_baseline_edit_24" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp "
-                android:layout_marginLeft="16dp "
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:text="Phone Number"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/ponenumber_checkout"
-                android:layout_width="183dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:gravity="end"
-                android:text="0852578535"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
 
-            <ImageView
-                android:id="@+id/change_phonecheckout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:tint="#000000"
-                app:srcCompat="@drawable/ic_baseline_edit_24" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:text="Phone Number"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
 
-        </LinearLayout>
+                    <TextView
+                        android:id="@+id/ponenumber_checkout"
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:gravity="end"
+                        android:text="0852578535"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:paddingTop="10dp">
+                    <ImageView
+                        android:id="@+id/change_phonecheckout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:tint="#000000"
+                        app:srcCompat="@drawable/ic_baseline_edit_24" />
 
-            <TextView
-                android:layout_width="121dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp "
-                android:layout_marginLeft="16dp "
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:text="Address"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/address_checkout"
-                android:layout_width="183dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:gravity="end"
-                android:text="Số 4 Phan Đình Phùng Vinh Nghệ An"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
 
-            <ImageView
-                android:id="@+id/change_addresscheckout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:tint="#000000"
-                app:srcCompat="@drawable/ic_baseline_edit_24" />
+                    <TextView
+                        android:layout_width="121dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:text="Address"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
 
-        </LinearLayout>
+                    <TextView
+                        android:id="@+id/address_checkout"
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:gravity="end"
+                        android:text="Số 4 Phan Đình Phùng Vinh Nghệ An"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
 
-        <View
-            android:id="@+id/divider4"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_weight="1"
-            android:background="?android:attr/listDivider" />
+                    <ImageView
+                        android:id="@+id/change_addresscheckout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:tint="#000000"
+                        app:srcCompat="@drawable/ic_baseline_edit_24" />
 
-        <TextView
-            android:id="@+id/quantity_items"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp "
-            android:layout_marginLeft="16dp "
-            android:fontFamily="@font/acme"
-            android:text="3 items"
-            android:textColor="#000000"
-            android:textSize="20dp" />
+                </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_items"
-            android:layout_width="match_parent"
-            android:layout_height="234dp">
+                <View
+                    android:id="@+id/divider4"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_weight="1"
+                    android:background="?android:attr/listDivider" />
 
-        </androidx.recyclerview.widget.RecyclerView>
+                <TextView
+                    android:id="@+id/quantity_items"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp "
+                    android:layout_marginLeft="16dp "
+                    android:fontFamily="@font/acme"
+                    android:text="3 items"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
 
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="?android:attr/listDivider" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_items"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="53dp"
-            android:orientation="horizontal"
-            android:paddingTop="10dp">
+                </androidx.recyclerview.widget.RecyclerView>
 
-            <TextView
-                android:layout_width="183dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp "
-                android:layout_marginLeft="16dp "
-                android:fontFamily="@font/acme"
-                android:text="subtotal"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="?android:attr/listDivider" />
 
-            <TextView
-                android:id="@+id/ID_Order"
-                android:layout_width="183dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:gravity="end"
-                android:text="$200"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="53dp"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
 
-        </LinearLayout>
+                    <TextView
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:fontFamily="@font/acme"
+                        android:text="subtotal"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="10dp">
+                    <TextView
+                        android:id="@+id/ID_Order"
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:gravity="end"
+                        android:text="$200"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
 
-            <TextView
-                android:id="@+id/tax"
-                android:layout_width="183dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp "
-                android:layout_marginLeft="16dp "
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:text="tax"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/Create_Day"
-                android:layout_width="183dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:gravity="end"
-                android:text="$200"
-                android:textColor="#000000"
-                android:textSize="20dp" />
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
 
-        <LinearLayout
-            android:id="@+id/Total"
-            android:layout_width="match_parent"
-            android:layout_height="76dp"
-            android:orientation="horizontal"
-            android:paddingTop="20dp">
+                    <TextView
+                        android:id="@+id/tax"
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp "
+                        android:layout_marginLeft="16dp "
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:text="tax"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
 
-            <TextView
-                android:layout_width="183dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp "
-                android:layout_marginLeft="16dp "
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:text="Total"
-                android:textColor="#000000"
-                android:textSize="26dp" />
+                    <TextView
+                        android:id="@+id/Create_Day"
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:gravity="end"
+                        android:text="$200"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/total_checkout"
-                android:layout_width="183dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/acme"
-                android:gravity="end"
-                android:text="$200"
-                android:textColor="#FF0101"
-                android:textSize="26dp" />
-        </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/Total"
+                    android:layout_width="match_parent"
+                    android:layout_height="76dp"
+                    android:orientation="horizontal"
+                    android:paddingTop="20dp">
 
-        <Button
-            android:id="@+id/buynow"
-            android:layout_width="250dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:fontFamily="@font/acme"
-            android:text="Buy Now"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:backgroundTint="?android:attr/colorFocusedHighlight"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+                    <TextView
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp "
+                        android:layout_marginLeft="16dp "
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:text="Total"
+                        android:textColor="#000000"
+                        android:textSize="26dp" />
+
+                    <TextView
+                        android:id="@+id/total_checkout"
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:gravity="end"
+                        android:text="$200"
+                        android:textColor="#FF0101"
+                        android:textSize="26dp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/buynow"
+                    android:layout_width="250dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/acme"
+                    android:text="Buy Now"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    app:backgroundTint="?android:attr/colorFocusedHighlight"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

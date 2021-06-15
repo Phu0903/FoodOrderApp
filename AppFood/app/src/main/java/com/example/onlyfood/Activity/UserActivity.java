@@ -25,14 +25,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class UserActivity extends Fragment {
-    private TextView textViewTerm;
-
-    RecyclerView popularRecyclerView, categoryRecyclerView; // RecyclerView
-    ApiServices apiInterface; //Call ApiServices
     Context context;
     Button signout,pucharse_history;
     String email;
     TextView fullname,usermail,phonenumber,address;
+    Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+    ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,29 +55,35 @@ public class UserActivity extends Fragment {
         }
 
         //Using retrofit
-        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
-        ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
+        //click
+        ClickSignOut();
+        ClickHistory();
         callApiUser(jsonPlaceHolderApi);
         //Call function
-        signout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-          }
-        });
-        //click
+        //
+        context = container.getContext();
+        return mView;
+
+    }
+    private void ClickHistory()
+    {
         pucharse_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 StartHistory();
             }
         });
-        //
-        context = container.getContext();
-        return mView;
-
+    }
+    private void ClickSignOut()
+    {
+        signout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
     }
     private void callApiUser(ApiServices jsonPlaceHolderApi)
     {

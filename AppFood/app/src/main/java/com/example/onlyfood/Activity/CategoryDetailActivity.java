@@ -35,41 +35,48 @@ import retrofit2.Retrofit;
 public class CategoryDetailActivity extends AppCompatActivity {
     RecyclerView popularRecyclerView;
     ImageView imageView;
-    TextView itemName, itemPrice, itemRating;
+    TextView itemName;
     String name,urlImage,email;
     Button BackHome,btn_up,btn_down;
     ListFoodAdapater ListFoodAdapater;
     List<FoodModel> gets;
-
+    Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+    ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_food_by_category);
-        Bundle bundle = getIntent().getExtras();
-        name = bundle.getString("name");
-        urlImage = bundle.getString("image");
-        email = bundle.getString("email");
+        IntentFromAnotherActivity();
         init();
+        LoadImage();
+        ClickBackHome();
+        CallListFoodPopular(jsonPlaceHolderApi);
+        Filter();
 
-
-        Glide.with(getApplicationContext()).load(getApplicationContext().getResources().
-                getIdentifier(urlImage, "drawable", getApplicationContext().getPackageName())).
-                into(imageView);
-        itemName.setText(name);
-
-       BackHome.setOnClickListener(new View.OnClickListener() {
+    }
+    private void ClickBackHome()
+    {
+        BackHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        /*getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
-        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
-        ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
-        CallListFoodPopular(jsonPlaceHolderApi);
-        Filter();
 
     }
-
+    private void LoadImage()
+    {
+        Glide.with(getApplicationContext()).load(getApplicationContext().getResources().
+                getIdentifier(urlImage, "drawable", getApplicationContext().getPackageName())).
+                into(imageView);
+        itemName.setText(name);
+    }
+    private void IntentFromAnotherActivity()
+    {
+        Bundle bundle = getIntent().getExtras();
+        name = bundle.getString("name");
+        urlImage = bundle.getString("image");
+        email = bundle.getString("email");
+    }
     private void CallListFoodPopular(ApiServices jsonPlaceHolderApi)
     {
         Call<List<FoodModel>> call = jsonPlaceHolderApi.getFoodbyCategory(name);
