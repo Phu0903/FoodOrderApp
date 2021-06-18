@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Just Only Click
-                Login.setEnabled(false);
+                Register.setEnabled(false);
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
                 finish();

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "831683865894",
+    "project_id": "onlyfood-e94a7",
+    "storage_bucket": "onlyfood-e94a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831683865894:android:ef0e55b6144b28b43965e7",
+        "android_client_info": {
+          "package_name": "com.example.onlyfood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "831683865894-ts4aorksbe1bicje8sgejmeiq6b0ui0u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.onlyfood",
+            "certificate_hash": "ac459bb52071b7ec4f32638073f098fcba765551"
+          }
+        },
+        {
+          "client_id": "831683865894-a853manipe8ebtjpbr2h01if1r18m2t9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBofumnkKASjx2b5NTvCbUixavZ08mQcu0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "831683865894-a853manipe8ebtjpbr2h01if1r18m2t9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

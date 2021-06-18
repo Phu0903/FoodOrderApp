@@ -1,12 +1,6 @@
 package com.example.onlyfood.model;
 
 public class UserModel {
-      /* "_id": "60b706529f781f0022bc3fd2",
-               "_email": "phu09032000",
-               "_password": "$2a$10$9QcIAn.UWzL6j9f39rQqtuaeVR2TjKuLhQgflhdwGD27EptgrehTi",
-               "_name": "Phú",
-               "_PhoneNumber": 2313124212,
-               "_Address": "3123123",*/
     private String _id;
     private String _email;
     private String _password;

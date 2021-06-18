@@ -69,4 +69,5 @@ public class LoginRegisterModel {
         this.email = email;
         this.password = password;
     }
+
 }

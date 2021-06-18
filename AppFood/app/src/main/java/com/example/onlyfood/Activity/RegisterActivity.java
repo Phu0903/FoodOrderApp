@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.onlyfood.R;
+import com.example.onlyfood.model.CheckUser;
 import com.example.onlyfood.model.LoginRegisterModel;
 import com.example.onlyfood.networking.ApiServices;
 import com.example.onlyfood.networking.RetrofitClient;
@@ -50,12 +51,11 @@ public class RegisterActivity extends AppCompatActivity {
         add_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register(jsonPlaceHolderApi,
-                        String.valueOf(signup_email.getText()),
-                        String.valueOf(signup_password.getText()),
-                        String.valueOf(signup_name.getText()),
-                        String.valueOf(signup_phonenumber.getText()),
-                        String.valueOf(signup_address.getText()));
+                String mobile = signup_phonenumber.getText().toString();
+                String email = signup_email.getText().toString();
+                checkUser(jsonPlaceHolderApi,email,mobile);
+
+
             }
         });
     }
@@ -82,21 +82,28 @@ public class RegisterActivity extends AppCompatActivity {
         add_account = findViewById(R.id.add_account);
         login = findViewById(R.id.loginlayout);
     }
-    private  void register(ApiServices jsonPlaceHolderApi, String username, String password,String name, String phonenumber, String address)
+    private  void checkUser(ApiServices jsonPlaceHolderApi, String username, String phonenumber)
     {
-        LoginRegisterModel register = new LoginRegisterModel(username,password,name,phonenumber,address);
-        Call<LoginRegisterModel> signup = jsonPlaceHolderApi.Register(register);
-        signup.enqueue(new Callback<LoginRegisterModel>() {
+        CheckUser checkuser = new CheckUser(username,phonenumber);
+        Call<CheckUser> signup = jsonPlaceHolderApi.CheckUser(checkuser);
+        signup.enqueue(new Callback<CheckUser>() {
             @Override
-            public void onResponse(Call<LoginRegisterModel> call, Response<LoginRegisterModel> response) {
+            public void onResponse(Call<CheckUser> call, Response<CheckUser> response) {
                 if(response.isSuccessful()){
 
-                    if(response.body().getMessage().equals("Register success"))
+                    if(response.body().getMessage().equals("U can register"))
                     {
 
-                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                        finish();
+                        Intent i = new Intent(RegisterActivity.this,Verification_Activity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("email",signup_email.getText().toString());
+                        bundle.putString("password",signup_password.getText().toString());
+                        bundle.putString("name",signup_name.getText().toString());
+                        bundle.putString("phone",signup_phonenumber.getText().toString());
+                        bundle.putString("address",signup_address.getText().toString());
+                        i.putExtras(bundle);
+                        startActivity(i);
+
 
                     }
                     else {
@@ -111,11 +118,13 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<LoginRegisterModel> call, Throwable t) {
+            public void onFailure(Call<CheckUser> call, Throwable t) {
                 Log.d("Sai","Sai");
             }
         });
     }
 
 }
+
+
 

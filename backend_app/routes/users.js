@@ -3,6 +3,37 @@ var userRouter = express.Router();
 var bcryptjs = require('bcryptjs');
 var User = require('../model/User');
 const { response } = require('../app');
+const mailer = require('../utils/mailer')
+const otplib  = require('../helpers/2fa');
+
+userRouter.post('/CheckUser',async(req,res)=>{
+  const {
+    email,
+    phonenumber
+  } = req.body
+  try {
+    const number1 = await User.find({'_email':email}).count()
+    const number2 = await User.find({'_PhoneNumber':phonenumber}).count();
+    //const number = await User.findOne({'_email':email,'_PhoneNumber':phonenumber}).count()
+    
+    if(number1 == 0 && number2 == 0)
+    {
+      res.json({
+        message:"U can register"
+      })
+    }
+    else {
+      res.json({
+        message:"email or phone already exists"
+      })
+    }
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+})
 
 
 /*đăng kí*/
@@ -13,19 +44,18 @@ userRouter.post('/dangky', async (req, res, next) => {
     var email = post_data.email;
     var phonenumber = post_data.phonenumber;
     var address = post_data.address
-    console.log(name);
     if (!email || !req.body.password) {
       return res
         .json({ success: false, "message": "Username or password not empty" })
     }
     else if (!name) {
       return res
-        .status(400)
+        .status(200)
         .json({ success: false, "message": "Name not empty" })
     }
     else if (!phonenumber) {
       return res
-        .status(400)
+        .status(200)
         .json({ success: false, "message": "Phonenumber not empty" })
     }
     else {
@@ -37,17 +67,11 @@ userRouter.post('/dangky', async (req, res, next) => {
         '_PhoneNumber': phonenumber,
         '_Address': address
       }
-      User.findOne({ '_email': email }).count(function (err, number) {
-        if (number != 0) {
-          res.status(400).json({ "message":'Email already exists'});
-          
-        }
-        else {
           var dulieu = new User(innsertUser);
           dulieu.save();
           res.status(200).json({ "message":'Register success'});
-        }
-      })
+        
+      
     }
   } catch (err) {
     res.status(500).json({
@@ -56,6 +80,25 @@ userRouter.post('/dangky', async (req, res, next) => {
     });
   }
 });
+//xác minh mail
+userRouter.post('/send-email', async(req,res)=>{
+  try {
+    const { emailclient } = req.body
+
+    // Thực hiện gửi email
+    await mailer.sendMail(emailclient,emailclient)
+
+    // Quá trình gửi email thành công thì gửi về thông báo success cho người dùng
+    res.send('oke')
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+})
+//vertifileOTP
+userRouter.post('/verifileOTP',mailer.postVerify2FA)
 //đăng nhập
 userRouter.post('/dangnhap', async (req, res, next) => {
   try {
@@ -101,4 +144,7 @@ userRouter.get('/inforUser', async (req, res) => {
     });
   }
 })
+//mail
+
+
 module.exports = userRouter;

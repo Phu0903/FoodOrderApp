@@ -34,7 +34,7 @@
         <activity android:name=".Activity.DetailFoodActivity" />
         <activity android:name=".Activity.CheckOutActivity" />
         <activity android:name=".Activity.HistoryDetailActivity"></activity>
-
+        <activity android:name=".Activity.Verification_Activity"></activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
