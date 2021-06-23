@@ -26,7 +26,11 @@ var users = new mongoose.Schema({
     {
         type:String,
         required:true,
-    } 
+    } ,
+    _urlImage:{
+        type:String,
+      
+    }
 }, { collection: 'users' });
 
 module.exports = mongoose.model('users', users)

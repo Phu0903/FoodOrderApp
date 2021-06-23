@@ -83,7 +83,6 @@ public class Verification_Activity extends AppCompatActivity {
             password = bundle.getString("password");
             name = bundle.getString("name");
             phone = bundle.getString("phone");
-            Log.d("ádsa",phone);
             address= bundle.getString("address");
 
         }

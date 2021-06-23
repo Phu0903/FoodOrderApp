@@ -52,10 +52,6 @@ orderRouter.post('/new_oder', async (req, res, next) => {
           })
         }
       })
-
-
-
-
     }
   } catch (error) {
     console.log(error)

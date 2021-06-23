@@ -123,10 +123,7 @@ public class ListCartAdapater extends RecyclerView.Adapter<ListCartAdapater.List
 
                     Log.d("Xóa",response.body().toString());
 
-
                 }
-
-
             }
             @Override
             public void onFailure(Call<CartModel> call, Throwable t) {
