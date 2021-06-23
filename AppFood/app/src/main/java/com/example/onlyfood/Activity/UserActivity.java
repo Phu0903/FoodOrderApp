@@ -97,7 +97,7 @@ public class UserActivity extends Fragment {
                 else{
                     fullname.setText(response.body().get_name());
                     usermail.setText(response.body().get_email());
-                    phonenumber.setText(response.body().get_PhoneNumber());
+                    phonenumber.setText("0"+response.body().get_PhoneNumber());
                     address.setText(response.body().get_Address());
                 }
             }

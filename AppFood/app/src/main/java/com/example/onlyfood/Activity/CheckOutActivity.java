@@ -184,7 +184,7 @@ public class CheckOutActivity extends AppCompatActivity {
                     phone = response.body().get_PhoneNumber();
                     address = response.body().get_Address();
                     name_user.setText(name);
-                    phone_user.setText(phone);
+                    phone_user.setText("0"+phone);
                     address_user.setText(address);
                 }
             }
