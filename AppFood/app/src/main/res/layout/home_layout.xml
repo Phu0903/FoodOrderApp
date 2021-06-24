@@ -176,7 +176,7 @@
             android:paddingLeft="20dp"
             android:text="Category"
             android:textColor="#000000"
-            android:textSize="20dp"
+            android:textSize="26dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -188,7 +188,7 @@
             android:paddingLeft="20dp"
             android:text="Popular this week"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="26dp"
             app:layout_constraintBottom_toTopOf="@+id/cart_recycler"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/category_recycler" />
