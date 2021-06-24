@@ -9,6 +9,16 @@ public class OrderModel {
     private String address;
     private String phonenumber;
     private String message;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     private List<OrderListModel> product;
 
     public List<OrderListModel> getProduct() {
@@ -51,12 +61,13 @@ public class OrderModel {
         this.phonenumber = phonenumber;
     }
 
-    public OrderModel(String email, String total, String address, String phonenumber,List<OrderListModel> product) {
+    public OrderModel(String email, String name,String total, String address, String phonenumber,List<OrderListModel> product) {
         this.email = email;
         this.total = total;
         this.address = address;
         this.phonenumber = phonenumber;
         this.product = product;
+        this.name = name;
     }
 
     private String _email;
@@ -66,6 +77,16 @@ public class OrderModel {
     private  String _address;
     private  String _phonenumber;
     private Date _createDay;
+
+    public String get_name() {
+        return _name;
+    }
+
+    public void set_name(String _name) {
+        this._name = _name;
+    }
+
+    private String _name;
     private List<OrderListModel> _product;
     public List<OrderListModel> get_product() {
         return _product;

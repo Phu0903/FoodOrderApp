@@ -18,6 +18,7 @@ orderRouter.post('/new_oder', async (req, res, next) => {
     var address = post_data.address;
     var phonenumber = post_data.phonenumber;
     var product = post_data.product
+    var name= post_data.name
     if (!req.body) {
       res.status(401).json({
         message: 'Giỏ hàng trống'
@@ -34,6 +35,8 @@ orderRouter.post('/new_oder', async (req, res, next) => {
         '_address': address,
         '_phonenumber': phonenumber,
         '_product':product,
+        '_name':name
+        
 
       }
       var dataNewOrder = await new order(orderdata);

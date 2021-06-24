@@ -33,6 +33,9 @@ var order = new mongoose.Schema({
     },
     _product:{
         type:[OrderList]
+    },
+    _name:{
+        type:String
     }
 }, { collection: 'order' });
 

@@ -89,13 +89,35 @@
                         android:textColor="#000000"
                         android:textSize="20dp" />
 
+                    <EditText
+                        android:id="@+id/name_checkout2"
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:gravity="end"
+                        android:text="Nguyễn Duy Phú"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+                        android:visibility="gone" />
+
                     <ImageView
                         android:id="@+id/change_namecheckout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:tint="#000000"
+                        android:visibility="visible"
                         app:srcCompat="@drawable/ic_baseline_edit_24" />
+
+                    <ImageView
+                        android:id="@+id/savename"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:tint="#000000"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/ic_baseline_save_24" />
 
                 </LinearLayout>
 
@@ -118,7 +140,7 @@
                         android:textSize="20dp" />
 
                     <TextView
-                        android:id="@+id/ponenumber_checkout"
+                        android:id="@+id/phonenumber_checkout"
                         android:layout_width="183dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -128,6 +150,18 @@
                         android:textColor="#000000"
                         android:textSize="20dp" />
 
+                    <EditText
+                        android:id="@+id/phone_checkout2"
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:gravity="end"
+                        android:text="Nguyễn Duy Phú"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+                        android:visibility="gone" />
+
                     <ImageView
                         android:id="@+id/change_phonecheckout"
                         android:layout_width="wrap_content"
@@ -135,6 +169,15 @@
                         android:layout_weight="1"
                         android:tint="#000000"
                         app:srcCompat="@drawable/ic_baseline_edit_24" />
+
+                    <ImageView
+                        android:id="@+id/savephone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:tint="#000000"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/ic_baseline_save_24" />
 
                 </LinearLayout>
 
@@ -168,6 +211,18 @@
                         android:textColor="#000000"
                         android:textSize="20dp" />
 
+                    <EditText
+                        android:id="@+id/address_checkout2"
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/acme"
+                        android:gravity="end"
+                        android:text="Nguyễn Duy Phú"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+                        android:visibility="gone" />
+
                     <ImageView
                         android:id="@+id/change_addresscheckout"
                         android:layout_width="wrap_content"
@@ -175,6 +230,15 @@
                         android:layout_weight="1"
                         android:tint="#000000"
                         app:srcCompat="@drawable/ic_baseline_edit_24" />
+
+                    <ImageView
+                        android:id="@+id/saveaddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:tint="#000000"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/ic_baseline_save_24" />
 
                 </LinearLayout>
 

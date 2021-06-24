@@ -101,6 +101,7 @@ public class ListHistoryAdapater extends RecyclerView.Adapter<ListHistoryAdapate
             public void onClick(View v) {
                 Intent i = new Intent(context, HistoryDetailActivity.class);
                 Bundle bundle = new Bundle();
+                bundle.putString("name",hero.get_name());
                 bundle.putString("PhoneNumber",hero.get_phonenumber());
                 bundle.putString("Address",hero.get_address());
                 bundle.putString("ID",hero.get_OrderID());

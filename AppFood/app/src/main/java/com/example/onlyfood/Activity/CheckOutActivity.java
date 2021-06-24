@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.onlyfood.Adapater.ListChekOutAdapater;
@@ -33,8 +35,12 @@ public class CheckOutActivity extends AppCompatActivity {
     String email,name,address,phone;
     TextView quantity_items,totaldetail,taxdetal,total_checkout;
     Button BackHome,BuyNow;
+    ImageView changenamecheckoutbtn,savenamebtn,
+              changePhonebtn,savePhonebtn,
+              changeAddressbtn,saveAddressbtn;
     Integer itmes = 0,tax,total=0;
     TextView name_user,address_user,phone_user;
+    EditText name_checkout2,phone_checkout2,address_checkout2;
     double price_checkout;
     //Using retrofit
     Retrofit retrofit = RetrofitClient.getRetrofitInstance();
@@ -53,10 +59,38 @@ public class CheckOutActivity extends AppCompatActivity {
         callApiUser(jsonPlaceHolderApi,email);
         //Click Back Home
         ClickBackHome();
+        //Change
+        ChangeInfo();
         //Clik buy now
         ClickBuyNow();
 
 
+
+    }
+    private void init()
+    {
+        quantity_items = findViewById(R.id.quantity_items);
+        ListTtemsRecycerview = findViewById(R.id.list_items);
+        BackHome = findViewById(R.id.back_home3);
+        totaldetail = findViewById(R.id.ID_Order);
+        taxdetal = findViewById(R.id.Create_Day);
+        total_checkout = findViewById(R.id.total_checkout);
+        name_user = findViewById(R.id.name_checkout);
+        address_user = findViewById(R.id.address_checkout);
+        phone_user = findViewById(R.id.phonenumber_checkout);
+        BuyNow = findViewById(R.id.buynow);
+        //name
+        changenamecheckoutbtn = findViewById(R.id.change_namecheckout);
+        name_checkout2 = findViewById(R.id.name_checkout2);
+        savenamebtn = findViewById(R.id.savename);
+        //phone
+        changePhonebtn = findViewById(R.id.change_phonecheckout);
+        phone_checkout2 = findViewById(R.id.phone_checkout2);
+        savePhonebtn = findViewById(R.id.savephone);
+        //address
+        changeAddressbtn = findViewById(R.id.change_addresscheckout);
+        address_checkout2 = findViewById(R.id.address_checkout2);
+        saveAddressbtn = findViewById(R.id.saveaddress);
     }
     //Intent from cart activity
     private void intentfrom()
@@ -71,6 +105,77 @@ public class CheckOutActivity extends AppCompatActivity {
             Log.d("null","null");
         }
     }
+    private void ChangeInfo(){
+        changenamecheckoutbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changenamecheckoutbtn.setVisibility(View.GONE);
+                name_user.setVisibility(View.GONE);
+                name_checkout2.setVisibility(View.VISIBLE);
+                savenamebtn.setVisibility(View.VISIBLE);
+
+            }
+        });
+        savenamebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("name_change",name_checkout2.getText().toString());
+                name_user.setText(name_checkout2.getText().toString());
+                name = name_checkout2.getText().toString();
+                changenamecheckoutbtn.setVisibility(View.VISIBLE);
+                name_user.setVisibility(View.VISIBLE);
+                name_checkout2.setVisibility(View.GONE);
+                savenamebtn.setVisibility(View.GONE);
+            }
+        });
+
+        //phone
+        changePhonebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changePhonebtn.setVisibility(View.GONE);
+                phone_user.setVisibility(View.GONE);
+                phone_checkout2.setVisibility(View.VISIBLE);
+                savePhonebtn.setVisibility(View.VISIBLE);
+
+            }
+        });
+        savePhonebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                phone_user.setText(phone_checkout2.getText().toString());
+                phone = phone_checkout2.getText().toString();
+                changePhonebtn.setVisibility(View.VISIBLE);
+                phone_user.setVisibility(View.VISIBLE);
+                phone_checkout2.setVisibility(View.GONE);
+                savePhonebtn.setVisibility(View.GONE);
+            }
+        });
+
+        //address
+        //phone
+        changeAddressbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeAddressbtn.setVisibility(View.GONE);
+                address_user.setVisibility(View.GONE);
+                address_checkout2.setVisibility(View.VISIBLE);
+                saveAddressbtn.setVisibility(View.VISIBLE);
+
+            }
+        });
+        saveAddressbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                address_user.setText(address_checkout2.getText().toString());
+                address = address_checkout2.getText().toString();
+                changeAddressbtn.setVisibility(View.VISIBLE);
+                address_user.setVisibility(View.VISIBLE);
+                address_checkout2.setVisibility(View.GONE);
+                saveAddressbtn.setVisibility(View.GONE);
+            }
+        });
+    }
     //Click Back Homw
     private void ClickBackHome()
     {
@@ -83,29 +188,18 @@ public class CheckOutActivity extends AppCompatActivity {
 
         });
     }
+
     //Click btn buy now
     private void ClickBuyNow(){
         BuyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 BuyNow.setEnabled(false);
-                AddtoOrder(jsonPlaceHolderApi,email,total.toString(),address,phone,prodcut_food);
+                AddtoOrder(jsonPlaceHolderApi,email,name,total.toString(),address,phone,prodcut_food);
             }
         });
     }
-    private void init()
-    {
-        quantity_items = findViewById(R.id.quantity_items);
-        ListTtemsRecycerview = findViewById(R.id.list_items);
-        BackHome = findViewById(R.id.back_home3);
-        totaldetail = findViewById(R.id.ID_Order);
-        taxdetal = findViewById(R.id.Create_Day);
-        total_checkout = findViewById(R.id.total_checkout);
-        name_user = findViewById(R.id.name_checkout);
-        address_user = findViewById(R.id.address_checkout);
-        phone_user = findViewById(R.id.ponenumber_checkout);
-        BuyNow = findViewById(R.id.buynow);
-    }
+
 
     //Call list data cart
     private void CheckOutList(ApiServices jsonPlaceHolderApi,String email)
@@ -183,9 +277,15 @@ public class CheckOutActivity extends AppCompatActivity {
                     name = response.body().get_name();
                     phone = response.body().get_PhoneNumber();
                     address = response.body().get_Address();
+                    //name
                     name_user.setText(name);
+                    name_checkout2.setText(name);
+                    //phone
                     phone_user.setText("0"+phone);
+                    phone_checkout2.setText("0"+phone);
+                    //address
                     address_user.setText(address);
+                    address_checkout2.setText(address);
                 }
             }
             @Override
@@ -196,10 +296,10 @@ public class CheckOutActivity extends AppCompatActivity {
     }
 
 
-    private void AddtoOrder(ApiServices jsonPlaceHolderApi,String email,String total,String address,String phonenumber,List<OrderListModel> product_food)
+    private void AddtoOrder(ApiServices jsonPlaceHolderApi,String email,String name,String total,String address,String phonenumber,List<OrderListModel> product_food)
     {
 
-        OrderModel ordermodel = new OrderModel(email,total,address,phonenumber,product_food);
+        OrderModel ordermodel = new OrderModel(email,name,total,address,phonenumber,product_food);
         Call<OrderModel> call = jsonPlaceHolderApi.postOrder(ordermodel);
         call.enqueue(new Callback<OrderModel>() {
             @Override

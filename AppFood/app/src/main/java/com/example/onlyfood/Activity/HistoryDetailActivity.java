@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HistoryDetailActivity extends AppCompatActivity {
-    String PhonNumber,Address,ID,Quantity,Product,Total;
+    String PhonNumber,Address,ID,Quantity,Total,Name;
     ArrayList<OrderListModel> orderListModels;
     TextView NameHistory,PhoneHistory,AddressHistory,IDOrder,CreateDay,QuantityHistory,TotalHisory;
     RecyclerView ListTtemsRecycerview;
@@ -58,6 +58,7 @@ public class HistoryDetailActivity extends AppCompatActivity {
        AddressHistory.setText(Address);
        IDOrder.setText(ID);
        TotalHisory.setText(Total);
+       NameHistory.setText(Name);
     }
     private void IntentFrom()
     {
@@ -67,6 +68,7 @@ public class HistoryDetailActivity extends AppCompatActivity {
         Address = bundle.getString("Address");
         ID = bundle.getString("ID");
         Total = bundle.getString("Total");
+        Name = bundle.getString("name");
         orderListModels = (ArrayList<OrderListModel>) bundle.getSerializable("Product");
 
 
