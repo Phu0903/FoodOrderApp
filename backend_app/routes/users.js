@@ -5,6 +5,7 @@ var User = require('../model/User');
 const { response } = require('../app');
 const mailer = require('../utils/mailer')
 const otplib = require('../helpers/2fa');
+const ProductFood = require('../model/ProductFood')
 
 userRouter.post('/CheckUser', async (req, res) => {
   const {
@@ -112,6 +113,143 @@ userRouter.post('/dangnhap', async (req, res, next) => {
   }
 });
 
+//add favorite
+userRouter.put('/Addfavorite',async(req,res)=>{
+   try {
+    
+     const {email,id_product} = req.body
+    const AccountUser = await User.findOne({ '_email': email })
+    if(!AccountUser){
+      res.json('No have account')
+    }
+    if (!id_product)
+    {
+      res.json("Null");
+    }
+    else {
+      User.updateOne({_email:email},{
+          $push:{
+            '_favorite': id_product
+          }
+      },function(err,data){
+        res.json({
+          message:"Oke"
+        })
+      })
+    }
+     
+   } catch (error) {
+     console.log(error)
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+   }
+});
+//Remove Favorite
+userRouter.put('/Removefavorite',async(req,res)=>{
+  try {
+   
+    const {email,id_product} = req.body
+   const AccountUser = await User.findOne({ '_email': email })
+   if(!AccountUser){
+     res.json('No have account')
+   }
+   if (!id_product)
+   {
+     res.json("Null");
+   }
+   else {
+     User.updateOne({_email:email},{
+         $pull:{
+           '_favorite': id_product
+         }
+     },function(err,data){
+       res.json({
+         message:"Oke"
+       })
+     })
+   }
+    
+  } catch (error) {
+    
+   res.status(500).json({
+     success: false,
+     message: error.message
+   });
+  }
+});
+//Get Favorite
+userRouter.post('/getFavorite',async(req,res)=>{
+  try {
+    const {email,id_product} = req.body
+   
+    const AccountUser = await User.findOne({ '_email': email }) 
+    let status = 0;
+    if(!AccountUser){
+      res.json('No have account')
+    }
+    else{
+      for(let i in AccountUser._favorite)
+      {  
+        if(id_product == AccountUser._favorite[i])
+        {
+          status = 1
+        
+        }
+      }
+      if(status == 1)
+      {
+        console.log("Yes")
+        res.status(201).json({
+          message:"Yes"
+        })
+      }
+      else{
+        res.status(201).json({
+          message:"No"
+        })
+      }
+    }
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+})
+//Get Product Food list by Favorite
+userRouter.get('/GetProductFavorite',async(req,res)=>{
+  try {
+    const AccountUser = await User.findOne({'_email':req.query.email})
+    let Product, ListProduct = [];
+   
+    if (!AccountUser) {
+      res.json({message:'No have account'})
+    }
+    else{
+      Product = await ProductFood.find()
+      for (let i in Product)
+      {
+        for(let j in AccountUser._favorite)
+        {
+              if(Product[i]._ProductID == AccountUser._favorite[j])
+              {
+                ListProduct.push(Product[i])
+              }
+        }
+        
+      }
+     res.json(ListProduct);
+    }
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+})
+//update User
 userRouter.put('/UpdateUser', async (req, res) => {
   try {
     const { email, name, address, urlimage, PasswordReset } = req.body;
@@ -139,14 +277,14 @@ userRouter.put('/UpdateUser', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: err.message
+      message: error.message
     });
 }
 })
 
 
 //xác minh mail
-userRouter.post('/send-email', async (req, res) => {
+/*userRouter.post('/send-email', async (req, res) => {
   try {
     const { emailclient } = req.body
 
@@ -163,7 +301,7 @@ userRouter.post('/send-email', async (req, res) => {
   }
 })
 //vertifileOTP
-userRouter.post('/verifileOTP', mailer.postVerify2FA)
+userRouter.post('/verifileOTP', mailer.postVerify2FA)*/
 
 //getInforUser
 userRouter.get('/inforUser', async (req, res) => {

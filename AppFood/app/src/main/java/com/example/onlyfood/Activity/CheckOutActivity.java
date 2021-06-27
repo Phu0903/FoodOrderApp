@@ -196,6 +196,7 @@ public class CheckOutActivity extends AppCompatActivity {
             public void onClick(View v) {
                 BuyNow.setEnabled(false);
                 AddtoOrder(jsonPlaceHolderApi,email,name,total.toString(),address,phone,prodcut_food);
+
             }
         });
     }
@@ -262,7 +263,6 @@ public class CheckOutActivity extends AppCompatActivity {
 
     }
 
-
     //api inforuser
     private void callApiUser(ApiServices jsonPlaceHolderApi,String email)
     {
@@ -295,7 +295,7 @@ public class CheckOutActivity extends AppCompatActivity {
         });
     }
 
-
+    //api add to Order
     private void AddtoOrder(ApiServices jsonPlaceHolderApi,String email,String name,String total,String address,String phonenumber,List<OrderListModel> product_food)
     {
 
@@ -313,6 +313,7 @@ public class CheckOutActivity extends AppCompatActivity {
                     bundle.putString("notification",email);
                     intent.putExtras(bundle);
                     startActivity(intent);
+
                     finish();
                 }
             }
@@ -322,5 +323,6 @@ public class CheckOutActivity extends AppCompatActivity {
             }
         });
     }
+
 
 }

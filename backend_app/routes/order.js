@@ -6,9 +6,10 @@ var order = require('../model/Order')
 var ProductFood = require('../model/ProductFood');
 var orderList = require('../model/OrderList');
 const { json } = require('express');
+const mailer = require('../utils/mailer')
 
 //New Order
-orderRouter.post('/new_oder', async (req, res, next) => {
+orderRouter.post('/new-oder', async (req, res, next) => {
   try {
     var post_data = req.body;
     var email = post_data.email;
@@ -19,6 +20,7 @@ orderRouter.post('/new_oder', async (req, res, next) => {
     var phonenumber = post_data.phonenumber;
     var product = post_data.product
     var name= post_data.name
+   
     if (!req.body) {
       res.status(401).json({
         message: 'Giỏ hàng trống'
@@ -39,6 +41,7 @@ orderRouter.post('/new_oder', async (req, res, next) => {
         
 
       }
+      mailer.sendMail(email,orderID,address,phonenumber,name,total,product)
       var dataNewOrder = await new order(orderdata);
       dataNewOrder.save(function (err) {
         if (err) {

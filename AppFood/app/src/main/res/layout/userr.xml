@@ -76,11 +76,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="30dp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -88,7 +88,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:layout_width="157dp"
+                        android:layout_width="127dp"
                         android:layout_height="29dp"
                         android:background="@color/white"
                         android:drawableLeft="@drawable/email"
@@ -99,13 +99,13 @@
 
                     <TextView
                         android:id="@+id/user_email"
-                        android:layout_width="185dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
                         android:fontFamily="@font/acme"
                         android:phoneNumber="false"
                         android:textColor="@color/black"
-                        android:textSize="24sp" />
+                        android:textSize="24dp" />
 
                 </LinearLayout>
 
@@ -116,7 +116,7 @@
                     android:background="@color/white">
 
                     <TextView
-                        android:layout_width="156dp"
+                        android:layout_width="128dp"
                         android:layout_height="31dp"
                         android:drawableLeft="@drawable/phone_book"
                         android:fontFamily="@font/acme"
@@ -132,7 +132,7 @@
                         android:fontFamily="@font/acme"
                         android:phoneNumber="true"
                         android:textColor="@color/black"
-                        android:textSize="24sp" />
+                        android:textSize="24dp" />
 
                     <View
                         android:layout_width="match_parent"
@@ -147,7 +147,7 @@
                     android:layout_marginTop="15dp">
 
                     <TextView
-                        android:layout_width="156dp"
+                        android:layout_width="127dp"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/icons8_facebook_24"
                         android:fontFamily="@font/acme"
@@ -162,7 +162,7 @@
                         android:background="@color/white"
                         android:fontFamily="@font/acme"
                         android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:textSize="24dp" />
 
                     <View
                         android:layout_width="match_parent"

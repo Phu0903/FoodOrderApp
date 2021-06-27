@@ -11,10 +11,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.onlyfood.R;
 import com.example.onlyfood.model.CartModel;
+import com.example.onlyfood.model.FavoriteModel;
 import com.example.onlyfood.networking.ApiServices;
 import com.example.onlyfood.networking.RetrofitClient;
 
@@ -24,11 +26,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class DetailFoodActivity extends AppCompatActivity {
-    ImageView imageView;
-    TextView itemName, itemPrice, itemRating,itemDetail,Number;
-    RatingBar ratingBar;
+    ImageView imageView,favorite_btn1,favorite_btn2;
+    TextView itemName, itemPrice,itemDetail,Number;
     Button BackHome,AddtoCart,Add,Remove;
-    String name, price, rating, imageUrl,ID_Product,detail,Adapater1,Adapater2,email;
+    String name, price,imageUrl,ID_Product,detail,Adapater1,Adapater2,email;
+    String status_favorite;
     Retrofit retrofit = RetrofitClient.getRetrofitInstance();
     ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
     int count = 0;
@@ -41,11 +43,104 @@ public class DetailFoodActivity extends AppCompatActivity {
         setLayout();
         ClicKBackHome();
         ClickAddToCart();
+        Favorite();
 
 
     }
+
+    public void CallFavorite(ApiServices jsonPlaceHolderApi)
+    {
+        FavoriteModel favoriteModel = new FavoriteModel(email,ID_Product);
+        Call<FavoriteModel> call = jsonPlaceHolderApi.GetFavorite(favoriteModel);
+
+        call.enqueue(new Callback<FavoriteModel>() {
+            @Override
+            public void onResponse(Call<FavoriteModel> call, Response<FavoriteModel> response) {
+                if (response.isSuccessful()) {
+                  
+                    if(response.body().getMessage().equals("Yes"))
+                    {
+                        favorite_btn1.setVisibility(View.VISIBLE);
+                        favorite_btn2.setVisibility(View.GONE);
+                    }
+                    else{
+
+                        favorite_btn1.setVisibility(View.GONE);
+                        favorite_btn2.setVisibility(View.VISIBLE);
+                    }
+
+                }
+            }
+            @Override
+            public void onFailure(Call<FavoriteModel> call, Throwable t) {
+                Toast.makeText(DetailFoodActivity.this,"Failed"+t.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+    public void Favorite(){
+        CallFavorite(jsonPlaceHolderApi);
+        //Add
+        favorite_btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                favorite_btn1.setVisibility(View.GONE);
+                favorite_btn2.setVisibility(View.VISIBLE);
+                RemoveFavorite(jsonPlaceHolderApi);
+
+            }
+        });
+        favorite_btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                favorite_btn2.setVisibility(View.GONE);
+                favorite_btn1.setVisibility(View.VISIBLE);
+                AddFavorite(jsonPlaceHolderApi);
+            }
+        });
+    }
+
+    //Add favorite
+    private void AddFavorite(ApiServices jsonPlaceHolderApi){
+        FavoriteModel favoriteModel = new FavoriteModel(email,ID_Product);
+
+        Call<FavoriteModel> call = jsonPlaceHolderApi.AddFavorite(favoriteModel);
+        call.enqueue(new Callback<FavoriteModel>() {
+            @Override
+            public void onResponse(Call<FavoriteModel> call, Response<FavoriteModel> response) {
+                if(response.isSuccessful()){
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FavoriteModel> call, Throwable t) {
+                Log.d("Oke","Ko Oke");
+            }
+        });
+    }
+
+    //Remove favorite
+    private void RemoveFavorite(ApiServices jsonPlaceHolderApi)
+    {
+        FavoriteModel favoriteModel = new FavoriteModel(email,ID_Product);
+
+        Call<FavoriteModel> call = jsonPlaceHolderApi.RemoveFavorite(favoriteModel);
+        call.enqueue(new Callback<FavoriteModel>() {
+            @Override
+            public void onResponse(Call<FavoriteModel> call, Response<FavoriteModel> response) {
+                if(response.isSuccessful()){
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FavoriteModel> call, Throwable t) {
+                Log.d("Oke","Ko Oke");
+            }
+        });
+    }
     private void ClickAddToCart()
     {
+
         AddtoCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +180,7 @@ public class DetailFoodActivity extends AppCompatActivity {
         Adapater1=bundle.getString("ListFood");
         Adapater2=bundle.getString("PopularAdapater");
         email = bundle.getString("username");
+
     }
     public void countIN(View view)
     {
@@ -136,6 +232,8 @@ public class DetailFoodActivity extends AppCompatActivity {
         Number= findViewById(R.id.number);
         Add = findViewById(R.id.add);
         Remove = findViewById(R.id.remove);
+        favorite_btn1 = findViewById(R.id.fvr_btn_1);
+        favorite_btn2 = findViewById(R.id.fvr_btn_2);
 
 
     }

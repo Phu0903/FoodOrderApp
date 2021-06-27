@@ -1,16 +1,21 @@
 package com.example.onlyfood.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.onlyfood.Adapater.ListFoodAdapater;
 import com.example.onlyfood.R;
@@ -19,7 +24,6 @@ import com.example.onlyfood.networking.ApiServices;
 import com.example.onlyfood.networking.RetrofitClient;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -27,52 +31,44 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class SearchActivity extends AppCompatActivity {
-    EditText editText;
-    String email;
-    RecyclerView popularRecyclerView;
+public class FavoriteActivity extends Fragment {
+    RecyclerView foodRecyclerView;
     ListFoodAdapater ListFoodAdapater;
-    Button BackHome;
+    EditText editText;
     List<FoodModel> gets;
+    String email;
+    Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+    ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_layout);
-        Bundle bundle = getIntent().getExtras();
-        email = bundle.getString("search_email");
-        init();
-        //using retrofit call api
-        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
-        ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
-        //call food
-        callAllFood(jsonPlaceHolderApi);
-        //search
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View mView = inflater.inflate(R.layout.favorite_layout, null);
+        foodRecyclerView =  mView.findViewById(R.id.list_favorite);
+        editText = (EditText) mView.findViewById(R.id.edsearch2);
+
+        DataFromAnotherActivity();
+        callFavotiteFood(jsonPlaceHolderApi);
         initSearchWidgets();
-        //BackHome
-        BackHome();
-    }
 
-    private void init()
-    {
-        popularRecyclerView =  findViewById(R.id.list_seacrh);
-        editText = (EditText) findViewById(R.id.edsearch);
-        BackHome = findViewById(R.id.back_home4);
-    }
+        return mView;
 
-    //back home
-    private void BackHome()
-    {
-        BackHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
-
-    private void callAllFood(ApiServices jsonPlaceHolderApi)
+    private void DataFromAnotherActivity()
     {
-        Call<List<FoodModel>> call = jsonPlaceHolderApi.getFullProducts();
+
+        Intent intent = getActivity().getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            email= bundle.getString("username");
+        }
+        else {
+            Log.d("null","null");
+        }
+    }
+    private void callFavotiteFood(ApiServices jsonPlaceHolderApi)
+    {
+        Call<List<FoodModel>> call = jsonPlaceHolderApi.getFavoriteFood(email);
         call.enqueue(new Callback<List<FoodModel>>() {
             @Override
             public void onResponse( Call<List<FoodModel>> call, Response<List<FoodModel>> response) {
@@ -111,17 +107,17 @@ public class SearchActivity extends AppCompatActivity {
                         postNewsModelArrayList.add(post);
                     }
                 }
-                ListFoodAdapater = new ListFoodAdapater(SearchActivity.this, postNewsModelArrayList,email);
-                popularRecyclerView.setAdapter(ListFoodAdapater);
+                ListFoodAdapater = new ListFoodAdapater(getContext(), postNewsModelArrayList,email);
+                foodRecyclerView.setAdapter(ListFoodAdapater);
 
             }
         });
     }
     private void  getProductData(List<FoodModel> popularList){
-        ListFoodAdapater = new ListFoodAdapater(this, popularList,email);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SearchActivity.this, LinearLayoutManager.VERTICAL, false);
-        popularRecyclerView.setLayoutManager(layoutManager);
-        popularRecyclerView.setAdapter(ListFoodAdapater);
-
+        ListFoodAdapater = new ListFoodAdapater(getContext(), popularList,email);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        foodRecyclerView.setLayoutManager(layoutManager);
+        foodRecyclerView.setAdapter(ListFoodAdapater);
     }
 }
+

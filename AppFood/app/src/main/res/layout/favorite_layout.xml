@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"></View>
+
+    <EditText
+        android:id="@+id/edsearch2"
+        style="@android:style/Widget.AutoCompleteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/search_bg"
+        android:drawableLeft="@drawable/ic_baseline_search_24"
+        android:fontFamily="@font/acme"
+        android:hint="Search"
+        android:inputType="text"
+        android:padding="10dp"
+        android:textColor="#000000" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_favorite"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="10dp" />
+
+</LinearLayout>

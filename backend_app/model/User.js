@@ -30,7 +30,8 @@ var users = new mongoose.Schema({
     _urlImage:{
         type:String,
       
-    }
+    },
+    _favorite:[]
 }, { collection: 'users' });
 
 module.exports = mongoose.model('users', users)
