@@ -211,7 +211,7 @@ userRouter.post('/getFavorite',async(req,res)=>{
       }
       if(status == 1)
       {
-        console.log("Yes")
+       
         res.status(201).json({
           message:"Yes"
         })
