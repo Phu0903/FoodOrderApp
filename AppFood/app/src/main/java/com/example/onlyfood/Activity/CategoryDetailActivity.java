@@ -37,7 +37,7 @@ public class CategoryDetailActivity extends AppCompatActivity {
     ImageView imageView;
     TextView itemName;
     String name,urlImage,email;
-    Button BackHome,btn_up,btn_down;
+    Button BackHome,btn_up,btn_down,btn_fvr_up,btn_fvr_down;
     ListFoodAdapater ListFoodAdapater;
     List<FoodModel> gets;
     Retrofit retrofit = RetrofitClient.getRetrofitInstance();
@@ -53,6 +53,7 @@ public class CategoryDetailActivity extends AppCompatActivity {
         Filter();
 
     }
+
     private void ClickBackHome()
     {
         BackHome.setOnClickListener(new View.OnClickListener() {
@@ -97,8 +98,9 @@ public class CategoryDetailActivity extends AppCompatActivity {
             }
         });
     }
-    //Sort price
+
     private void Filter() {
+        //Sort price filter
         btn_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,6 +138,45 @@ public class CategoryDetailActivity extends AppCompatActivity {
             }
 
         });
+
+        btn_fvr_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<FoodModel> postfvrlArrayList = new ArrayList<>();
+
+                for (FoodModel post: gets) {
+                    postfvrlArrayList.add(post);
+                }
+                Collections.sort(postfvrlArrayList, new Comparator<FoodModel>() {
+                    @Override
+                    public int compare(FoodModel o1, FoodModel o2) {
+                        return Integer.valueOf(o1.get_Favorite()) - Integer.valueOf(o2.get_Favorite());
+                    }
+                });
+                ListFoodAdapater = new ListFoodAdapater(CategoryDetailActivity.this, postfvrlArrayList,email);
+                popularRecyclerView.setAdapter(ListFoodAdapater);
+            }
+
+        });
+        btn_fvr_down.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<FoodModel> postfvrlArrayList = new ArrayList<>();
+
+                for (FoodModel post: gets) {
+                    postfvrlArrayList.add(post);
+                }
+                Collections.sort(postfvrlArrayList, new Comparator<FoodModel>() {
+                    @Override
+                    public int compare(FoodModel o1, FoodModel o2) {
+                        return Integer.valueOf(o2.get_Favorite()) - Integer.valueOf(o1.get_Favorite());
+                    }
+                });
+                ListFoodAdapater = new ListFoodAdapater(CategoryDetailActivity.this, postfvrlArrayList,email);
+                popularRecyclerView.setAdapter(ListFoodAdapater);
+            }
+
+        });
     }
     //Ánh xạ view
     private void init()
@@ -146,6 +187,8 @@ public class CategoryDetailActivity extends AppCompatActivity {
         popularRecyclerView = findViewById(R.id.list_food_category);
         btn_up = findViewById(R.id.btn_up_price);
         btn_down =findViewById(R.id.btn_down_price);
+        btn_fvr_up =findViewById(R.id.btn_up_fvr);
+        btn_fvr_down =findViewById(R.id.btn_down_fvr);
     }
 
     private void  getPopularData(List<FoodModel> popularList){

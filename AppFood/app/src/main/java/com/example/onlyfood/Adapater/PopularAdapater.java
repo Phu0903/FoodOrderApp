@@ -52,6 +52,7 @@ public class PopularAdapater extends RecyclerView.Adapter<PopularAdapater.Popula
         //Glide.with(context).load(popularList.get(position).get_Image()).into(holder.popularImage);
         holder.popularName.setText(hero.get_NameProduct());
         holder.popularPrice.setText(String.valueOf(hero.get_Price()));
+        holder.favrotive.setText(String.valueOf(hero.get_Favorite()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,13 +83,14 @@ public class PopularAdapater extends RecyclerView.Adapter<PopularAdapater.Popula
 
     public  static class PopularViewHolder extends RecyclerView.ViewHolder{
         ImageView popularImage;
-        TextView popularName,popularPrice;
+        TextView popularName,popularPrice,favrotive;
 
         public PopularViewHolder(@NonNull View itemView) {
             super(itemView);
             popularPrice = itemView.findViewById(R.id.cart_totalprice);
             popularName = itemView.findViewById(R.id.cart_name);
             popularImage = itemView.findViewById(R.id.cart_image);
+            favrotive =itemView.findViewById(R.id.favrotive_quantity);
 
 
         }

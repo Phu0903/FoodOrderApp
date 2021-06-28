@@ -5,7 +5,7 @@
       android:title="Home"></item>
    <item  android:id="@+id/nav_favorite"
        android:icon="@drawable/ic_baseline_favorite_24"
-       android:title="Home"></item>
+       android:title="Favorite"></item>
    <item
        android:id="@+id/nav_cart"
        android:icon="@drawable/ic_baseline_shopping_cart_24"

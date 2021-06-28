@@ -54,6 +54,7 @@ public class FavoriteActivity extends Fragment {
         return mView;
 
     }
+
     private void DataFromAnotherActivity()
     {
 

@@ -6,7 +6,8 @@ var users = new mongoose.Schema({
     _Info: 'string',
     _Image: 'string',
     _Category: 'string',
-    _Sold: 'number'
+    _Sold: 'number',
+    _Favorite:'number'
 }, { collection: 'ProductFood' });
 
 module.exports = mongoose.model('ProductFood', users)

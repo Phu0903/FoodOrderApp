@@ -83,6 +83,7 @@ public class DetailFoodActivity extends AppCompatActivity {
         favorite_btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                favorite_btn1.setEnabled(false);
                 favorite_btn1.setVisibility(View.GONE);
                 favorite_btn2.setVisibility(View.VISIBLE);
                 RemoveFavorite(jsonPlaceHolderApi);
@@ -90,8 +91,10 @@ public class DetailFoodActivity extends AppCompatActivity {
             }
         });
         favorite_btn2.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+                favorite_btn2.setEnabled(false);
                 favorite_btn2.setVisibility(View.GONE);
                 favorite_btn1.setVisibility(View.VISIBLE);
                 AddFavorite(jsonPlaceHolderApi);
@@ -148,11 +151,13 @@ public class DetailFoodActivity extends AppCompatActivity {
             }
         });
     }
+
     private void ClicKBackHome()
     {
         BackHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 finish();
 
             }

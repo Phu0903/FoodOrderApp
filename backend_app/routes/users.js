@@ -117,7 +117,7 @@ userRouter.post('/dangnhap', async (req, res, next) => {
 userRouter.put('/Addfavorite',async(req,res)=>{
    try {
     
-     const {email,id_product} = req.body
+    const {email,id_product} = req.body
     const AccountUser = await User.findOne({ '_email': email })
     if(!AccountUser){
       res.json('No have account')
@@ -127,11 +127,17 @@ userRouter.put('/Addfavorite',async(req,res)=>{
       res.json("Null");
     }
     else {
+      await ProductFood.updateOne(
+        {'_ProductID':id_product},
+        //tăng lên 1
+        {$inc:{'_Favorite':+1}}
+      )
       User.updateOne({_email:email},{
           $push:{
             '_favorite': id_product
           }
       },function(err,data){
+       
         res.json({
           message:"Oke"
         })
@@ -160,6 +166,11 @@ userRouter.put('/Removefavorite',async(req,res)=>{
      res.json("Null");
    }
    else {
+    await ProductFood.updateOne(
+      {'_ProductID':id_product},
+      //tăng lên 1
+      {$inc:{'_Favorite':-1}}
+    )
      User.updateOne({_email:email},{
          $pull:{
            '_favorite': id_product

@@ -13,6 +13,16 @@ public class FoodModel {
     private String _Category;
     private String _Sold;
 
+    public String get_Favorite() {
+        return _Favorite;
+    }
+
+    public void set_Favorite(String _Favorite) {
+        this._Favorite = _Favorite;
+    }
+
+    private String _Favorite;
+
 
     //Getter and Setter
     public String get_ProductID() {
