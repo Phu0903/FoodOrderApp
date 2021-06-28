@@ -54,7 +54,18 @@ public class FavoriteActivity extends Fragment {
         return mView;
 
     }
+    //pause
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+    //Restart
+    @Override
+    public void onStart() {
+        super.onStart();
+        callFavotiteFood(jsonPlaceHolderApi);
 
+    }
     private void DataFromAnotherActivity()
     {
 

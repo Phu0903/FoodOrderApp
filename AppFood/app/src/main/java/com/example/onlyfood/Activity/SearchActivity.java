@@ -34,6 +34,9 @@ public class SearchActivity extends AppCompatActivity {
     ListFoodAdapater ListFoodAdapater;
     Button BackHome;
     List<FoodModel> gets;
+    //using retrofit call api
+    Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+    ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +44,7 @@ public class SearchActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         email = bundle.getString("search_email");
         init();
-        //using retrofit call api
-        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
-        ApiServices jsonPlaceHolderApi = retrofit.create(ApiServices.class);
+
         //call food
         callAllFood(jsonPlaceHolderApi);
         //search
@@ -51,7 +52,18 @@ public class SearchActivity extends AppCompatActivity {
         //BackHome
         BackHome();
     }
+    //pause
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+    //Restart
+    @Override
+    public void onStart() {
+        super.onStart();
+        callAllFood(jsonPlaceHolderApi);
 
+    }
     private void init()
     {
         popularRecyclerView =  findViewById(R.id.list_seacrh);

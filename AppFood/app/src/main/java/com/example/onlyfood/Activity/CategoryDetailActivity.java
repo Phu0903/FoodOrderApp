@@ -3,6 +3,7 @@ package com.example.onlyfood.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -51,9 +52,20 @@ public class CategoryDetailActivity extends AppCompatActivity {
         ClickBackHome();
         CallListFoodPopular(jsonPlaceHolderApi);
         Filter();
-
     }
-
+    //pause
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+    //Restart
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        CallListFoodPopular(jsonPlaceHolderApi);
+        //When BACK BUTTON is pressed, the activity on the stack is restarted
+        //Do what you want on the refresh procedure here
+    }
     private void ClickBackHome()
     {
         BackHome.setOnClickListener(new View.OnClickListener() {

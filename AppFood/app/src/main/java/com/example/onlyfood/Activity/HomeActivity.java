@@ -60,6 +60,18 @@ public class HomeActivity extends Fragment {
         return mView;
 
     }
+    //pause
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+    //Restart
+    @Override
+    public void onStart() {
+        super.onStart();
+        CallListFoodPopular(jsonPlaceHolderApi);
+
+    }
     private void CallApi()
     {
         CallListCategory(jsonPlaceHolderApi);
