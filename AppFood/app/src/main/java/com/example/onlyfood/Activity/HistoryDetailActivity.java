@@ -57,7 +57,7 @@ public class HistoryDetailActivity extends AppCompatActivity {
        PhoneHistory.setText(PhonNumber);
        AddressHistory.setText(Address);
        IDOrder.setText(ID);
-       TotalHisory.setText(Total);
+       TotalHisory.setText("$"+Total);
        NameHistory.setText(Name);
     }
     private void IntentFrom()

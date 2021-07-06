@@ -32,7 +32,7 @@
             android:layout_marginTop="50dp"
             android:fontFamily="@font/acme"
             android:includeFontPadding="false"
-            android:text="VRTIFICATION"
+            android:text="VERIFICATION"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="16sp" />

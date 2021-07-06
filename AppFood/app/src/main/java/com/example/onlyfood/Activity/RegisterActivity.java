@@ -25,7 +25,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText signup_name,signup_password;
+    EditText signup_name,signup_password,signup_password2;
     EditText signup_phonenumber,signup_address;
     EditText signup_email;
     TextView login;
@@ -48,16 +48,32 @@ public class RegisterActivity extends AppCompatActivity {
     }
     public void ClickBtnRegister()
     {
-        add_account.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String mobile = signup_phonenumber.getText().toString();
-                String email = signup_email.getText().toString();
-                checkUser(jsonPlaceHolderApi,email,mobile);
+
+            add_account.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   if(signup_password.getText().length() >= 6) {
+                       Log.d("Re",signup_password.getText().toString());
+                       Log.d("Re2",signup_password2.getText().toString());
+                       if (signup_password2.getText().toString().equals(signup_password.getText().toString())) {
+                           String mobile = signup_phonenumber.getText().toString();
+                           String email = signup_email.getText().toString();
+                           checkUser(jsonPlaceHolderApi, email, mobile);
+                       } else {
+                           Toast.makeText(RegisterActivity.this, "Re-enter Password Wrong", Toast.LENGTH_LONG).show();
+                       }
+                   }
+                   else{
+                       Toast.makeText(RegisterActivity.this, "Password Wrong", Toast.LENGTH_LONG).show();
+
+                   }
 
 
-            }
-        });
+                }
+
+            });
+
+
     }
     public void ClickLogin()
     {
@@ -81,6 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
         signup_phonenumber=findViewById(R.id.signup_phonenumber);
         add_account = findViewById(R.id.add_account);
         login = findViewById(R.id.loginlayout);
+        signup_password2 = findViewById(R.id.signup_password2);
     }
     private  void checkUser(ApiServices jsonPlaceHolderApi, String username, String phonenumber)
     {
