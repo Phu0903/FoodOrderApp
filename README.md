@@ -18,7 +18,7 @@ Food Order App For Small Restaurant
 ## Authors
 - [Nguyễn Duy Phú](https://github.com/Phu0903)
 
-## Scrennshots
+## Screenshots
 <p float="left" align="center">
 <img src="https://user-images.githubusercontent.com/71036328/133887557-16faa1d2-152d-4620-8eb1-f062b74ededc.png" alt="drawing" width="240" height="520" />
 <img src="https://user-images.githubusercontent.com/71036328/133887570-452be6fa-cbe5-445a-aceb-7fe7b308b4b8.png" alt="drawing" width="240" height="520" />
