@@ -5,6 +5,7 @@ Food Order App For Small Restaurant
 - Food Searching
 - Filter food
 - Order food
+- Add to cart
 - Like food
 - Category 
 ## Tech 
